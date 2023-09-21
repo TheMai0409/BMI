@@ -15,33 +15,52 @@ class CardInputInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          title!,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 18.0,
-          ),
-        ),
-        Card(
-          child: Row(
-            children: [
-              Expanded(
-                flex: 3,
-                child: TextField(
-                  controller: controller,
-                  onChanged: infoIndex,
+    return SizedBox(
+      height: MediaQuery.of(context).size.width / 3,
+      child: Card(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Expanded(
+              flex: 1,
+              child: Text(
+                title!,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18.0,
                 ),
               ),
-              Expanded(
-                flex: 1,
-                child: Center(child: Text('cm')),
-              )
-            ],
-          ),
-        )
-      ],
+            ),
+            Expanded(
+              flex: 2,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Flexible(
+                    flex: 3,
+                    child: TextField(
+                      maxLines: 1,
+                      controller: controller,
+                      onChanged: infoIndex,
+                      maxLength: 5,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(borderSide: BorderSide.none),
+                        counterText: '',
+                      ),
+                    ),
+                  ),
+                  const Flexible(
+                    flex: 1,
+                    child: Center(child: Text('cm')),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

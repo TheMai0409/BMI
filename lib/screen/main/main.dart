@@ -39,34 +39,15 @@ class _Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LanguageBloc, LanguageState>(
       builder: (context, state) {
-        if (state is ChangeLocalState) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            supportedLocales: const [
-              Locale('en'),
-              Locale('vi'),
-            ],
-            locale: Locale(state.locale),
-            localizationsDelegates: const [
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-              AppLocalizations.delegate,
-            ],
-            navigatorKey: NavigationService.navigationKey,
-            initialRoute: RouteConstants.root,
-            routes: {
-              RouteConstants.root: (_) => const SplashScreen(),
-            },
-          );
-        }
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           supportedLocales: const [
             Locale('en'),
             Locale('vi'),
           ],
-          locale: const Locale('vi'),
+          locale: (state is ChangeLocalState)
+              ? Locale(state.locale)
+              : const Locale('vi'),
           localizationsDelegates: const [
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
@@ -78,7 +59,7 @@ class _Body extends StatelessWidget {
           routes: {
             RouteConstants.root: (_) => const SplashScreen(),
           },
-        );
+          );
       },
     );
   }
