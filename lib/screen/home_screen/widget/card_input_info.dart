@@ -1,3 +1,4 @@
+import 'package:bmi/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class CardInputInfo extends StatelessWidget {
@@ -16,46 +17,66 @@ class CardInputInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.width / 3,
+      height: MediaQuery.of(context).size.width * 0.43,
       child: Card(
+        elevation: 0,
+        color: const Color(0xFFEFEFEF),
+        shape: const RoundedRectangleBorder(
+            borderRadius:
+                BorderRadius.all(Radius.circular(defaultBorderRadius))),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Expanded(
               flex: 1,
-              child: Text(
-                title!,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.0,
+              child: Center(
+                child: Text(
+                  title!,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: textSizeSmall,
+                  ),
                 ),
               ),
             ),
             Expanded(
               flex: 2,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Flexible(
-                    flex: 3,
-                    child: TextField(
-                      maxLines: 1,
-                      controller: controller,
-                      onChanged: infoIndex,
-                      maxLength: 5,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(borderSide: BorderSide.none),
-                        counterText: '',
+              child: Center(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    IntrinsicWidth(
+                      child: TextField(
+                        maxLines: 1,
+                        textAlign: TextAlign.center,
+                        keyboardType: TextInputType.number,
+                        controller: controller,
+                        onChanged: infoIndex,
+                        maxLength: 5,
+                        decoration: const InputDecoration(
+                          border:
+                              OutlineInputBorder(borderSide: BorderSide.none),
+                          counterText: '',
+                        ),
+                        style: const TextStyle(
+                          color: textColor,
+                          fontSize: textSizeLarge,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
-                  ),
-                  const Flexible(
-                    flex: 1,
-                    child: Center(child: Text('cm')),
-                  )
-                ],
+                    const Center(
+                      child: Padding(
+                        padding: EdgeInsets.only(right: 8.0),
+                        child: Text(
+                          'cm',
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ],

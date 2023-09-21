@@ -3,11 +3,7 @@ import 'package:bmi/utils/navigation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import "package:flutter_localizations/flutter_localizations.dart"
-    show
-        GlobalCupertinoLocalizations,
-        GlobalMaterialLocalizations,
-        GlobalWidgetsLocalizations;
+import "package:flutter_localizations/flutter_localizations.dart";
 
 import '../../di/injection.dart';
 import '../../manager/hive_manager.dart';
