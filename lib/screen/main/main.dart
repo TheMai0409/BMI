@@ -1,4 +1,6 @@
 import 'package:bmi/screen/main/bloc/language_bloc.dart';
+import 'package:bmi/screen/main_screen/screen/main_screen.dart';
+import 'package:bmi/screen/setting_screen/setting_screen.dart';
 import 'package:bmi/utils/navigation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,7 +31,7 @@ class MyApp extends StatelessWidget {
 }
 
 class _Body extends StatelessWidget {
-  const _Body({super.key});
+  const _Body();
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +56,8 @@ class _Body extends StatelessWidget {
           initialRoute: RouteConstants.root,
           routes: {
             RouteConstants.root: (_) => const SplashScreen(),
+            RouteConstants.settingScreen: (_) => const SettingScreen(),
+            RouteConstants.mainScreen: (_) => const MainScreen(),
           },
           );
       },

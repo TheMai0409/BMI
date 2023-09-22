@@ -10,3 +10,9 @@ class TabChanged extends MainScreenState {
 
   TabChanged({required this.tabIndex});
 }
+
+class TabChangedViewPage extends MainScreenState {
+  final int tabIndex;
+
+  TabChangedViewPage({required this.tabIndex});
+}

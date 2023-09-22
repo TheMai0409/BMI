@@ -3,6 +3,7 @@ import 'package:bmi/screen/article_screen/article_screen.dart';
 import 'package:bmi/screen/history_screen/history_screen.dart';
 import 'package:bmi/screen/home_screen/home_screen.dart';
 import 'package:bmi/screen/main/bloc/language_bloc.dart';
+import 'package:bmi/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -39,7 +40,9 @@ class _MainScreenState extends State<MainScreen> {
       child: BlocConsumer<MainScreenBloc, MainScreenState>(
         listener: (context, state) {
           if (state is TabChanged) {
-            _controller.jumpToPage(state.tabIndex);
+            _controller.animateToPage(state.tabIndex,
+                duration: const Duration(microseconds: 500000),
+                curve: Curves.easeInOutCubic);
           }
         },
         builder: (context, state) {
@@ -49,7 +52,7 @@ class _MainScreenState extends State<MainScreen> {
                 borderRadius: BorderRadius.all(Radius.circular(50)),
                 boxShadow: [
                   BoxShadow(
-                      color: Colors.grey, //New
+                      color: Color(0xFFE8E8E8), //New
                       blurRadius: 10.0,
                       offset: Offset(0, -1))
                 ],
@@ -59,59 +62,71 @@ class _MainScreenState extends State<MainScreen> {
                   topLeft: Radius.circular(30),
                   topRight: Radius.circular(30),
                 ),
-                child: BottomNavigationBar(
-                  backgroundColor: Colors.blue,
-                  currentIndex: _currentIndex,
-                  onTap: (index) {
-                    if (_currentIndex == index) {
-                      return;
-                    }
-                    _currentIndex = index;
-                    if (_currentIndex % 2 == 0) {
-                      context
-                          .read<LanguageBloc>()
-                          .add(ChangeLanguage(locale: 'en'));
-                    } else {
-                      context
-                          .read<LanguageBloc>()
-                          .add(ChangeLanguage(locale: 'vi'));
-                    }
+                child: SizedBox(
+                  height: 75,
+                  child: BottomNavigationBar(
+                    backgroundColor: primaryColor,
+                    currentIndex: (state is TabChangedViewPage)
+                        ? state.tabIndex
+                        : _currentIndex,
+                    onTap: (index) {
+                      if (_currentIndex == index) {
+                        return;
+                      }
+                      _currentIndex = index;
+                      if (_currentIndex % 2 == 0) {
+                        context
+                            .read<LanguageBloc>()
+                            .add(ChangeLanguage(locale: 'en'));
+                      } else {
+                        context
+                            .read<LanguageBloc>()
+                            .add(ChangeLanguage(locale: 'vi'));
+                      }
 
-                    context
-                        .read<MainScreenBloc>()
-                        .add(OnTabChange(index: _currentIndex));
-                  },
-                  selectedItemColor: Theme.of(context).primaryColorLight,
-                  selectedIconTheme: const IconThemeData()
-                      .copyWith(color: Theme.of(context).primaryColorLight),
-                  iconSize: 30,
-                  selectedFontSize: 16,
-                  unselectedFontSize: 14,
-                  type: BottomNavigationBarType.fixed,
-                  items: <BottomNavigationBarItem>[
-                    BottomNavigationBarItem(
-                      icon: Icon(
-                        Icons.account_box,
+                      context
+                          .read<MainScreenBloc>()
+                          .add(OnTabChange(index: _currentIndex));
+                    },
+                    selectedItemColor: Colors.indigoAccent,
+                    iconSize: 27,
+                    selectedFontSize: 14,
+                    type: BottomNavigationBarType.fixed,
+                    items: <BottomNavigationBarItem>[
+                      BottomNavigationBarItem(
+                        icon: const Icon(
+                          Icons.home_filled,
+                        ),
+                        label: AppLocalizations.of(context)!.home,
                       ),
-                      label: AppLocalizations.of(context)!.home,
-                    ),
-                    BottomNavigationBarItem(
-                      icon: Icon(
-                        Icons.date_range,
+                      BottomNavigationBarItem(
+                        icon: const Icon(
+                          Icons.article,
+                        ),
+                        label: AppLocalizations.of(context)!.article,
                       ),
-                      label: AppLocalizations.of(context)!.article,
-                    ),
-                    BottomNavigationBarItem(
-                      icon: Icon(
-                        Icons.stacked_bar_chart,
+                      BottomNavigationBarItem(
+                        icon: const Icon(
+                          Icons.date_range,
+                        ),
+                        label: AppLocalizations.of(context)!.history,
                       ),
-                      label: AppLocalizations.of(context)!.history,
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
             body: PageView(
+              onPageChanged: (index) {
+                _currentIndex = index;
+
+                context
+                    .read<MainScreenBloc>()
+                    .add(OnScrollViewPage(index: _currentIndex));
+                // _controller.animateToPage(index,
+                //     duration: const Duration(milliseconds: 700),
+                //     curve: Curves.easeIn);
+              },
               controller: _controller,
               children: const [
                 HomeScreen(),

@@ -1,5 +1,7 @@
+import 'package:bmi/screen/article_screen/widget/item_article.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../component/custom_app_bar.dart';
 
 class ArticleScreen extends StatefulWidget {
   const ArticleScreen({super.key});
@@ -12,8 +14,32 @@ class _ArticleScreenState extends State<ArticleScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text(AppLocalizations.of(context)!.article),
+      appBar: PreferredSize(
+        preferredSize: const Size(0.0, 0.0),
+        child: Container(),
+      ),
+      body: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const CustomAppBar(
+                title: 'Article',
+              ),
+              const SizedBox(
+                height: 70,
+              ),
+              ItemArticle(title: 'Hello', isLove: true),
+              ItemArticle(title: 'Hello', isLove: true),
+              ItemArticle(title: 'Hello', isLove: true),
+              ItemArticle(title: 'Hello', isLove: true),
+              ItemArticle(title: 'Hello', isLove: true),
+              ItemArticle(title: 'Hello', isLove: true),
+              ItemArticle(title: 'Hello', isLove: true),
+            ],
+          ),
+        ),
       ),
     );
   }

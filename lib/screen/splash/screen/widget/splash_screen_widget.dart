@@ -7,12 +7,12 @@ class SplashScreenWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _Body();
+    return const _Body();
   }
 }
 
 class _Body extends StatelessWidget {
-  const _Body({super.key});
+  const _Body();
 
   @override
   Widget build(BuildContext context) {

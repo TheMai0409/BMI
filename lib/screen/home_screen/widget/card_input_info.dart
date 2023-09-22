@@ -2,7 +2,9 @@ import 'package:bmi/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class CardInputInfo extends StatelessWidget {
-  final String? title;
+  final String title;
+  final String textSuffix;
+  final String initValue;
   final TextEditingController? controller;
   final Function(String) infoIndex;
   final Function(String?)? changeUnit;
@@ -10,6 +12,8 @@ class CardInputInfo extends StatelessWidget {
   const CardInputInfo(
       {super.key,
       required this.title,
+      required this.initValue,
+      required this.textSuffix,
       this.controller,
       this.changeUnit,
       required this.infoIndex});
@@ -32,7 +36,7 @@ class CardInputInfo extends StatelessWidget {
               flex: 1,
               child: Center(
                 child: Text(
-                  title!,
+                  title,
                   style: const TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: textSizeSmall,
@@ -43,39 +47,31 @@ class CardInputInfo extends StatelessWidget {
             Expanded(
               flex: 2,
               child: Center(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    IntrinsicWidth(
-                      child: TextField(
-                        maxLines: 1,
-                        textAlign: TextAlign.center,
-                        keyboardType: TextInputType.number,
-                        controller: controller,
-                        onChanged: infoIndex,
-                        maxLength: 5,
-                        decoration: const InputDecoration(
-                          border:
-                              OutlineInputBorder(borderSide: BorderSide.none),
-                          counterText: '',
-                        ),
-                        style: const TextStyle(
-                          color: textColor,
-                          fontSize: textSizeLarge,
-                          fontWeight: FontWeight.w500,
-                        ),
+                child: IntrinsicWidth(
+                  child: TextFormField(
+                    maxLines: 1,
+                    initialValue: initValue,
+                    textAlign: TextAlign.center,
+                    keyboardType: TextInputType.number,
+                    controller: controller,
+                    onChanged: infoIndex,
+                    maxLength: 5,
+                    decoration: InputDecoration(
+                      border:
+                          const OutlineInputBorder(borderSide: BorderSide.none),
+                      counterText: '',
+                      suffixText: ' $textSuffix',
+                      suffixStyle: const TextStyle(
+                        color: textColor,
+                        fontSize: textSizeUnit,
                       ),
                     ),
-                    const Center(
-                      child: Padding(
-                        padding: EdgeInsets.only(right: 8.0),
-                        child: Text(
-                          'cm',
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    )
-                  ],
+                    style: const TextStyle(
+                      color: textColor,
+                      fontSize: textSizeLarge,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
                 ),
               ),
             ),
