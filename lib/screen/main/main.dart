@@ -1,5 +1,6 @@
 import 'package:bmi/screen/main/bloc/language_bloc.dart';
 import 'package:bmi/screen/main_screen/screen/main_screen.dart';
+import 'package:bmi/screen/result_screen/result_screen.dart';
 import 'package:bmi/screen/setting_screen/setting_screen.dart';
 import 'package:bmi/utils/navigation_service.dart';
 import 'package:flutter/material.dart';
@@ -58,6 +59,7 @@ class _Body extends StatelessWidget {
             RouteConstants.root: (_) => const SplashScreen(),
             RouteConstants.settingScreen: (_) => const SettingScreen(),
             RouteConstants.mainScreen: (_) => const MainScreen(),
+            RouteConstants.resultScreen: (_) => const ResultScreen(),
           },
           );
       },

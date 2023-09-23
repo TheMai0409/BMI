@@ -5,6 +5,8 @@ import 'package:bmi/component/ink_well_button.dart';
 import 'package:bmi/screen/home_screen/widget/card_gender.dart';
 import 'package:bmi/screen/home_screen/widget/card_input_info.dart';
 import 'package:bmi/utils/constants.dart';
+import 'package:bmi/utils/navigation_service.dart';
+import 'package:bmi/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
 
@@ -172,15 +174,19 @@ class _HomeScreenState extends State<HomeScreen> {
                       Radius.circular(defaultBorderRadius),
                     ),
                   ),
-                  child: const InkWellButton(
+                  child: InkWellButton(
+                    onTap: () => {
+                      navService.pushNamed(RouteConstants.resultScreen)},
                     child: Center(
-                        child: Text(
-                      'Caculation',
-                      style: TextStyle(
+                      child: Text(
+                        'Caculation',
+                        style: TextStyle(
                           fontSize: textSizeLarge,
                           fontWeight: FontWeight.w500,
-                          color: Colors.white),
-                    )),
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),
