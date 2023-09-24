@@ -1,5 +1,6 @@
 import 'package:bmi/screen/setting_screen/widget/item_setting.dart';
 import 'package:flutter/material.dart';
+import 'package:panara_dialogs/panara_dialogs.dart';
 
 import '../../component/ink_well_button.dart';
 import '../../utils/constants.dart';
@@ -123,6 +124,22 @@ class SettingScreen extends StatelessWidget {
                 color: Color(0xFFC800FF),
                 colorContainer: Color(0xFFF5DEFD),
               ),
+              PanaraConfirmDialog.show(
+                context,
+                title: "Hello",
+                message: "This is the PanaraConfirmDialog",
+                confirmButtonText: "Confirm",
+                cancelButtonText: "Cancel",
+                onTapCancel: () {
+                  Navigator.pop(context);
+                },
+                onTapConfirm: () {
+                  Navigator.pop(context);
+                },
+                panaraDialogType: PanaraDialogType.normal,
+                barrierDismissible:
+                    false, // optional parameter (default is true)
+              )
             ],
           ),
         ));

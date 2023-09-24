@@ -58,68 +58,206 @@ class ResultScreen extends StatelessWidget {
                     child: Stack(
                       alignment: Alignment.bottomCenter,
                       children: [
+                        // SfRadialGauge(
+                        //   enableLoadingAnimation: true,
+                        //   animationDuration: 2000,
+                        //   axes: <RadialAxis>[
+                        //     RadialAxis(
+                        //         showLabels: false,
+                        //         showTicks: false,
+                        //         showAxisLine: false,
+                        //         centerY: 0.7,
+                        //         annotations: <GaugeAnnotation>[
+                        //           GaugeAnnotation(
+                        //               angle: 90,
+                        //               widget: Text(
+                        //                 '30',
+                        //                 style: TextStyle(fontSize: 11),
+                        //               ))
+                        //         ],
+                        //         startAngle: 180,
+                        //         endAngle: 0,
+                        //         minimum: 0,
+                        //         maximum: 99,
+                        //         ranges: <GaugeRange>[
+                        //           GaugeRange(
+                        //             startValue: 0,
+                        //             endValue: 33,
+                        //             color: Color(0xFFFE2A25),
+                        //             label: 'Slow',
+                        //             sizeUnit: GaugeSizeUnit.factor,
+                        //             labelStyle: GaugeTextStyle(
+                        //                 fontFamily: 'Times', fontSize: 20),
+                        //           ),
+                        //           GaugeRange(
+                        //             startValue: 33,
+                        //             endValue: 66,
+                        //             color: Color(0xFFFFBA00),
+                        //             label: 'Moderate',
+                        //             labelStyle: GaugeTextStyle(
+                        //                 fontFamily: 'Times', fontSize: 20),
+                        //             sizeUnit: GaugeSizeUnit.factor,
+                        //           ),
+                        //           GaugeRange(
+                        //             startValue: 66,
+                        //             endValue: 99,
+                        //             color: Color(0xFF00AB47),
+                        //             label: 'Fast',
+                        //             labelStyle: GaugeTextStyle(
+                        //                 fontFamily: 'Times', fontSize: 20),
+                        //             sizeUnit: GaugeSizeUnit.factor,
+                        //           ),
+                        //         ],
+                        //         pointers: <GaugePointer>[
+                        //           MarkerPointer(
+                        //               value: 30,
+                        //               enableDragging: true,
+                        //               markerWidth: 30,
+                        //               markerHeight: 30,
+                        //               markerOffset: -15,
+                        //               color: Colors.indigo)
+                        //         ])
+                        //   ],
+                        // ),
                         SfRadialGauge(
-                          enableLoadingAnimation: true,
                           animationDuration: 2000,
+                          enableLoadingAnimation: true,
                           axes: <RadialAxis>[
                             RadialAxis(
+                                showAxisLine: false,
                                 showLabels: false,
                                 showTicks: false,
-                                showAxisLine: false,
-                                centerY: 0.7,
+                                startAngle: 180,
+                                endAngle: 360,
+                                maximum: 120,
+                                canScaleToFit: true,
+                                radiusFactor: 0.79,
                                 annotations: <GaugeAnnotation>[
                                   GaugeAnnotation(
-                                      angle: 90,
-                                      widget: Text(
-                                        '30',
-                                        style: TextStyle(fontSize: 11),
-                                      ))
+                                      angle: 175,
+                                      positionFactor: 0.8,
+                                      widget: Text('Min',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.bold))),
+                                  GaugeAnnotation(
+                                      angle: 270,
+                                      positionFactor: 0.1,
+                                      widget: Text('70%',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.bold))),
+                                  GaugeAnnotation(
+                                      angle: 5,
+                                      positionFactor: 0.8,
+                                      widget: Text('Max',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.bold)))
                                 ],
-                                startAngle: 180,
-                                endAngle: 0,
-                                minimum: 0,
-                                maximum: 99,
+                                pointers: const <GaugePointer>[
+                                  NeedlePointer(
+                                      needleEndWidth: 5,
+                                      needleLength: 0.7,
+                                      value: 82,
+                                      knobStyle: KnobStyle(knobRadius: 0)),
+                                ],
                                 ranges: <GaugeRange>[
                                   GaugeRange(
-                                    startValue: 0,
-                                    endValue: 33,
-                                    color: Color(0xFFFE2A25),
-                                    label: 'Slow',
-                                    sizeUnit: GaugeSizeUnit.factor,
-                                    labelStyle: GaugeTextStyle(
-                                        fontFamily: 'Times', fontSize: 20),
-                                  ),
+                                      startValue: 0,
+                                      endValue: 20,
+                                      startWidth: 0.45,
+                                      endWidth: 0.45,
+                                      sizeUnit: GaugeSizeUnit.factor,
+                                      color: const Color(0xFFDD3800)),
                                   GaugeRange(
-                                    startValue: 33,
-                                    endValue: 66,
-                                    color: Color(0xFFFFBA00),
-                                    label: 'Moderate',
-                                    labelStyle: GaugeTextStyle(
-                                        fontFamily: 'Times', fontSize: 20),
-                                    sizeUnit: GaugeSizeUnit.factor,
-                                  ),
+                                      startValue: 20.5,
+                                      endValue: 40,
+                                      startWidth: 0.45,
+                                      sizeUnit: GaugeSizeUnit.factor,
+                                      endWidth: 0.45,
+                                      color: const Color(0xFFFF4100)),
                                   GaugeRange(
-                                    startValue: 66,
-                                    endValue: 99,
-                                    color: Color(0xFF00AB47),
-                                    label: 'Fast',
-                                    labelStyle: GaugeTextStyle(
-                                        fontFamily: 'Times', fontSize: 20),
-                                    sizeUnit: GaugeSizeUnit.factor,
-                                  ),
-                                ],
-                                pointers: <GaugePointer>[
-                                  MarkerPointer(
-                                      value: 30,
-                                      enableDragging: true,
-                                      markerWidth: 30,
-                                      markerHeight: 30,
-                                      markerOffset: -15,
-                                      color: Colors.indigo)
-                                ])
+                                      startValue: 40.5,
+                                      endValue: 60,
+                                      startWidth: 0.45,
+                                      sizeUnit: GaugeSizeUnit.factor,
+                                      endWidth: 0.45,
+                                      color: const Color(0xFFFFBA00)),
+                                  GaugeRange(
+                                      startValue: 60.5,
+                                      endValue: 80,
+                                      startWidth: 0.45,
+                                      sizeUnit: GaugeSizeUnit.factor,
+                                      endWidth: 0.45,
+                                      color: const Color(0xFFFFDF10)),
+                                  GaugeRange(
+                                      startValue: 80.5,
+                                      endValue: 100,
+                                      sizeUnit: GaugeSizeUnit.factor,
+                                      startWidth: 0.45,
+                                      endWidth: 0.45,
+                                      color: const Color(0xFF8BE724)),
+                                  GaugeRange(
+                                      startValue: 100.5,
+                                      endValue: 120,
+                                      startWidth: 0.45,
+                                      endWidth: 0.45,
+                                      sizeUnit: GaugeSizeUnit.factor,
+                                      color: const Color(0xFF64BE00)),
+                                ]),
+                            RadialAxis(
+                              showAxisLine: false,
+                              showLabels: false,
+                              showTicks: false,
+                              startAngle: 180,
+                              endAngle: 360,
+                              maximum: 120,
+                              radiusFactor: 0.85,
+                              canScaleToFit: true,
+                              pointers: <GaugePointer>[
+                                MarkerPointer(
+                                    markerType: MarkerType.text,
+                                    text: 'Poor',
+                                    value: 20.5,
+                                    textStyle: GaugeTextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14,
+                                        fontFamily: 'Times'),
+                                    offsetUnit: GaugeSizeUnit.factor,
+                                    markerOffset: -0.12),
+                                MarkerPointer(
+                                    markerType: MarkerType.text,
+                                    text: 'Average',
+                                    value: 60.5,
+                                    textStyle: GaugeTextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14,
+                                        fontFamily: 'Times'),
+                                    offsetUnit: GaugeSizeUnit.factor,
+                                    markerOffset: -0.12),
+                                MarkerPointer(
+                                    markerType: MarkerType.text,
+                                    text: 'Good',
+                                    value: 100.5,
+                                    textStyle: GaugeTextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14,
+                                        fontFamily: 'Times'),
+                                    offsetUnit: GaugeSizeUnit.factor,
+                                    markerOffset: -0.12)
+                              ],
+                            ),
                           ],
                         ),
-                        Text('You BMI')
+                        Text(
+                          'You BMI',
+                          style: TextStyle(
+                            fontSize: textSizeLarge,
+                            fontWeight: FontWeight.w500,
+                            color: textColor,
+                          ),
+                        )
                       ],
                     ),
                   ),
@@ -127,7 +265,42 @@ class ResultScreen extends StatelessWidget {
                     title: 'Hello',
                     color: Colors.black12,
                     content: 'The',
-                  )
+                  ),
+                  TextInfo(
+                    title: 'Hello',
+                    color: Colors.black12,
+                    content: 'The',
+                  ),
+                  TextInfo(
+                    title: 'Hello',
+                    color: Colors.black12,
+                    content: 'The',
+                  ),
+                  TextInfo(
+                    title: 'Hello',
+                    color: Colors.black12,
+                    content: 'The',
+                  ),
+                  TextInfo(
+                    title: 'Hello',
+                    color: Colors.black12,
+                    content: 'The',
+                  ),
+                  TextInfo(
+                    title: 'Hello',
+                    color: Colors.black12,
+                    content: 'The',
+                  ),
+                  TextInfo(
+                    title: 'Hello',
+                    color: Colors.black12,
+                    content: 'The',
+                  ),
+                  TextInfo(
+                    title: 'Hello',
+                    color: Colors.black12,
+                    content: 'The',
+                  ),
                 ],
               ),
             ),
@@ -145,7 +318,7 @@ class ResultScreen extends StatelessWidget {
               onTap: () => {navService.pushNamed(RouteConstants.resultScreen)},
               child: Center(
                 child: Text(
-                  'Caculation',
+                  'Save',
                   style: TextStyle(
                     fontSize: textSizeLarge,
                     fontWeight: FontWeight.w500,
@@ -160,3 +333,4 @@ class ResultScreen extends StatelessWidget {
     );
   }
 }
+

@@ -1,7 +1,7 @@
 import 'package:bmi/di/injection.dart';
 import 'package:bmi/screen/main_screen/screen/main_screen.dart';
-import 'package:bmi/screen/splash/bloc/splash_bloc.dart';
-import 'package:bmi/screen/splash/screen/widget/splash_screen_widget.dart';
+import 'package:bmi/screen/splash_screen/bloc/splash_bloc.dart';
+import 'package:bmi/screen/splash_screen/screen/widget/splash_screen_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

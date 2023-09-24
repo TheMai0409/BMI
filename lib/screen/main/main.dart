@@ -11,7 +11,7 @@ import "package:flutter_localizations/flutter_localizations.dart";
 import '../../di/injection.dart';
 import '../../manager/hive_manager.dart';
 import '../../utils/routes.dart';
-import '../splash/screen/splash_screen.dart';
+import '../splash_screen/screen/splash_screen.dart';
 
 void main() async {
   await configureCoreDependencies();
