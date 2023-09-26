@@ -159,10 +159,58 @@ class ResultScreen extends StatelessWidget {
                               showTicks: false,
                               startAngle: 180,
                               endAngle: 360,
-                              maximum: 120,
+                              minimum: bmiData.thin3,
+                              maximum: bmiData.obesityIII,
                               radiusFactor: 0.85,
                               canScaleToFit: true,
-                              pointers: <GaugePointer>[],
+                              pointers: <GaugePointer>[
+                                MarkerPointer(
+                                  markerType: MarkerType.text,
+                                  text: '${bmiData.normalStart}',
+                                  value: bmiData.normalStart,
+                                  textStyle: GaugeTextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14,
+                                      fontFamily: 'Times'),
+                                  offsetUnit: GaugeSizeUnit.factor,
+                                  markerOffset: -0.20,
+                                ),
+                                MarkerPointer(
+                                  markerType: MarkerType.text,
+                                  text: '${bmiData.overWeightStart}',
+                                  value: bmiData.overWeightStart,
+                                  textStyle: GaugeTextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14,
+                                      fontFamily: 'Times'),
+                                  offsetUnit: GaugeSizeUnit.factor,
+                                  markerOffset: -0.20,
+                                ),
+                                MarkerPointer(
+                                  markerType: MarkerType.text,
+                                  text: '${bmiData.obesityIStart}',
+                                  value: bmiData.obesityIStart,
+                                  textStyle: GaugeTextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14,
+                                      fontFamily: 'Times'),
+                                  offsetUnit: GaugeSizeUnit.factor,
+                                  markerOffset: -0.20,
+                                ),
+                                MarkerPointer(
+                                  markerType: MarkerType.text,
+                                  text: '${bmiData.obesityIIStart}',
+                                  value: bmiData.obesityIIStart,
+                                  textStyle: GaugeTextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14,
+                                      fontFamily: 'Times'),
+                                  offsetUnit: GaugeSizeUnit.factor,
+                                  markerOffset: -0.20,
+                                ),
+
+
+                              ],
                             ),
                           ],
                         ),
