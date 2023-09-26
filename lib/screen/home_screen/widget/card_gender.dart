@@ -26,7 +26,7 @@ class CardGender extends StatelessWidget {
         height: MediaQuery.of(context).size.width * 0.43,
         child: Card(
           elevation: 0,
-          color: const Color(0xFFEFEFEF),
+          color: cardColor,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(
                 Radius.circular(defaultBorderRadius),

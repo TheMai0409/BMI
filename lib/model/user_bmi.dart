@@ -4,11 +4,13 @@ part 'user_bmi.g.dart';
 @HiveType(typeId: 0)
 class UserBMI {
   @HiveField(0)
-  double? height;
-  @HiveField(1)
-  double? weight;
-  @HiveField(2)
   DateTime? dateTime;
+  @HiveField(1)
+  double? bmi;
+  @HiveField(2)
+  int? age;
+  @HiveField(3)
+  int? gender;
 
-  UserBMI({this.height, this.weight, this.dateTime});
+  UserBMI({this.dateTime, this.bmi, this.age, this.gender});
 }

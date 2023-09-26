@@ -17,22 +17,25 @@ class UserBMIAdapter extends TypeAdapter<UserBMI> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return UserBMI(
-      height: fields[0] as double?,
-      weight: fields[1] as double?,
-      dateTime: fields[2] as DateTime?,
+      dateTime: fields[0] as DateTime?,
+      bmi: fields[1] as double?,
+      age: fields[2] as int?,
+      gender: fields[3] as int?,
     );
   }
 
   @override
   void write(BinaryWriter writer, UserBMI obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
-      ..write(obj.height)
+      ..write(obj.dateTime)
       ..writeByte(1)
-      ..write(obj.weight)
+      ..write(obj.bmi)
       ..writeByte(2)
-      ..write(obj.dateTime);
+      ..write(obj.age)
+      ..writeByte(3)
+      ..write(obj.gender);
   }
 
   @override

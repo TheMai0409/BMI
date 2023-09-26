@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bmi/component/custom_app_bar.dart';
 import 'package:bmi/component/ink_well_button.dart';
 import 'package:bmi/di/injection.dart';
@@ -7,11 +5,13 @@ import 'package:bmi/screen/home_screen/bloc/home_screen_bloc.dart';
 import 'package:bmi/screen/home_screen/widget/card_gender.dart';
 import 'package:bmi/screen/home_screen/widget/card_input_info.dart';
 import 'package:bmi/utils/constants.dart';
-import 'package:bmi/utils/navigation_service.dart';
-import 'package:bmi/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:numberpicker/numberpicker.dart';
+
+import '../../model/gender.dart';
+import '../../utils/navigation_service.dart';
+import '../../utils/routes.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -22,20 +22,24 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late int _currentAge;
-  late int _currentGender;
+  late String _currentWeight;
+  late String _currentHeight;
+  late Gender _currentGender;
 
   @override
   void initState() {
     super.initState();
     _currentAge = 1;
-    _currentGender = 1;
+    _currentWeight = '0.0';
+    _currentHeight = '0.0';
+    _currentGender = Gender.MALE;
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<HomeScreenBloc>(),
-      child: BlocBuilder<HomeScreenBloc, HomeScreenState>(
+      child: BlocConsumer<HomeScreenBloc, HomeScreenState>(
         builder: (context, state) {
           return Scaffold(
             appBar: PreferredSize(
@@ -70,8 +74,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     title: 'Weight',
                                     initValue: '0.0',
                                     textSuffix: 'kg',
-                                    infoIndex: (height) {
-                                      log('Height $height');
+                                    infoIndex: (weight) {
+                                      _currentWeight = weight;
                                     },
                                   ),
                                 ),
@@ -85,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     textSuffix: 'cm',
                                     initValue: '0.0',
                                     infoIndex: (height) {
-                                      log('Height $height');
+                                      _currentHeight = height;
                                     },
                                   ),
                                 ),
@@ -106,16 +110,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: CardGender(
                                     title: 'Male',
                                     icon: Icons.male_rounded,
-                                    color: Colors.indigoAccent,
+                                    color: maleColor,
                                     onTap: () {
-                                      _currentGender = 0;
+                                      _currentGender = Gender.MALE;
                                       context
                                           .read<HomeScreenBloc>()
                                           .add(OnTapGender(gender: 0));
                                     },
-                                    border:(_currentGender == 0)
+                                    border: (_currentGender == Gender.MALE)
                                         ? BorderSide(
-                                        color: Colors.indigoAccent, width: 3.0)
+                                            color: maleColor, width: 3.0)
                                         : BorderSide(color: Colors.transparent),
                                   ),
                                 ),
@@ -127,16 +131,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: CardGender(
                                     title: 'Female',
                                     icon: Icons.female_rounded,
-                                    color: Colors.pink,
+                                    color: femaleColor,
                                     onTap: () {
-                                      _currentGender = 1;
+                                      _currentGender = Gender.FEMALE;
                                       context
                                           .read<HomeScreenBloc>()
                                           .add(OnTapGender(gender: 1));
                                     },
-                                    border: (_currentGender == 1)
+                                    border: (_currentGender == Gender.FEMALE)
                                         ? BorderSide(
-                                            color: Colors.pink, width: 3.0)
+                                            color: femaleColor, width: 3.0)
                                         : BorderSide(color: Colors.transparent),
                                   ),
                                 ),
@@ -161,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 horizontal: defaultPadding),
                             child: Card(
                               elevation: 0,
-                              color: const Color(0xFFEFEFEF),
+                              color: cardColor,
                               shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(defaultBorderRadius),
@@ -218,7 +222,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         child: InkWellButton(
                           onTap: () => {
-                            navService.pushNamed(RouteConstants.resultScreen)
+                            context.read<HomeScreenBloc>().add(CalculationBMI(
+                                  age: _currentAge,
+                                  gender: _currentGender,
+                                  weight: double.parse(_currentWeight),
+                                  height: double.parse(_currentHeight),
+                                ))
                           },
                           child: Center(
                             child: Text(
@@ -238,6 +247,12 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           );
+        },
+        listener: (BuildContext context, HomeScreenState state) {
+          if (state is CalculationBMISuccess) {
+            navService.pushNamed(RouteConstants.resultScreen,
+                args: {'bmiData': state.bmiData, 'resultBMI': state.bmi});
+          }
         },
       ),
     );

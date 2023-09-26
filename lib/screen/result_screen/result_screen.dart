@@ -1,3 +1,4 @@
+import 'package:bmi/model/bmi_data.dart';
 import 'package:bmi/screen/result_screen/widget/text_info.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
@@ -8,10 +9,18 @@ import '../../utils/navigation_service.dart';
 import '../../utils/routes.dart';
 
 class ResultScreen extends StatelessWidget {
-  const ResultScreen({super.key});
+  const ResultScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final arguments = (ModalRoute.of(context)?.settings.arguments ??
+        <dynamic, dynamic>{}) as Map;
+    final bmiData = arguments['bmiData'] as BMIData;
+    final double resultBMI = arguments['resultBMI'];
+    print('TheMD $bmiData');
+    print('TheMD $resultBMI');
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size(0.0, 0.0),
@@ -56,156 +65,94 @@ class ResultScreen extends StatelessWidget {
                     height: 300,
                     width: MediaQuery.of(context).size.width,
                     child: Stack(
-                      alignment: Alignment.bottomCenter,
+                      alignment: Alignment.topCenter,
                       children: [
-                        // SfRadialGauge(
-                        //   enableLoadingAnimation: true,
-                        //   animationDuration: 2000,
-                        //   axes: <RadialAxis>[
-                        //     RadialAxis(
-                        //         showLabels: false,
-                        //         showTicks: false,
-                        //         showAxisLine: false,
-                        //         centerY: 0.7,
-                        //         annotations: <GaugeAnnotation>[
-                        //           GaugeAnnotation(
-                        //               angle: 90,
-                        //               widget: Text(
-                        //                 '30',
-                        //                 style: TextStyle(fontSize: 11),
-                        //               ))
-                        //         ],
-                        //         startAngle: 180,
-                        //         endAngle: 0,
-                        //         minimum: 0,
-                        //         maximum: 99,
-                        //         ranges: <GaugeRange>[
-                        //           GaugeRange(
-                        //             startValue: 0,
-                        //             endValue: 33,
-                        //             color: Color(0xFFFE2A25),
-                        //             label: 'Slow',
-                        //             sizeUnit: GaugeSizeUnit.factor,
-                        //             labelStyle: GaugeTextStyle(
-                        //                 fontFamily: 'Times', fontSize: 20),
-                        //           ),
-                        //           GaugeRange(
-                        //             startValue: 33,
-                        //             endValue: 66,
-                        //             color: Color(0xFFFFBA00),
-                        //             label: 'Moderate',
-                        //             labelStyle: GaugeTextStyle(
-                        //                 fontFamily: 'Times', fontSize: 20),
-                        //             sizeUnit: GaugeSizeUnit.factor,
-                        //           ),
-                        //           GaugeRange(
-                        //             startValue: 66,
-                        //             endValue: 99,
-                        //             color: Color(0xFF00AB47),
-                        //             label: 'Fast',
-                        //             labelStyle: GaugeTextStyle(
-                        //                 fontFamily: 'Times', fontSize: 20),
-                        //             sizeUnit: GaugeSizeUnit.factor,
-                        //           ),
-                        //         ],
-                        //         pointers: <GaugePointer>[
-                        //           MarkerPointer(
-                        //               value: 30,
-                        //               enableDragging: true,
-                        //               markerWidth: 30,
-                        //               markerHeight: 30,
-                        //               markerOffset: -15,
-                        //               color: Colors.indigo)
-                        //         ])
-                        //   ],
-                        // ),
                         SfRadialGauge(
                           animationDuration: 2000,
                           enableLoadingAnimation: true,
                           axes: <RadialAxis>[
                             RadialAxis(
-                                showAxisLine: false,
-                                showLabels: false,
-                                showTicks: false,
-                                startAngle: 180,
-                                endAngle: 360,
-                                maximum: 120,
-                                canScaleToFit: true,
-                                radiusFactor: 0.79,
-                                annotations: <GaugeAnnotation>[
-                                  GaugeAnnotation(
-                                      angle: 175,
-                                      positionFactor: 0.8,
-                                      widget: Text('Min',
-                                          style: TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.bold))),
-                                  GaugeAnnotation(
-                                      angle: 270,
-                                      positionFactor: 0.1,
-                                      widget: Text('70%',
-                                          style: TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.bold))),
-                                  GaugeAnnotation(
-                                      angle: 5,
-                                      positionFactor: 0.8,
-                                      widget: Text('Max',
-                                          style: TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.bold)))
-                                ],
-                                pointers: const <GaugePointer>[
-                                  NeedlePointer(
-                                      needleEndWidth: 5,
-                                      needleLength: 0.7,
-                                      value: 82,
-                                      knobStyle: KnobStyle(knobRadius: 0)),
-                                ],
-                                ranges: <GaugeRange>[
-                                  GaugeRange(
-                                      startValue: 0,
-                                      endValue: 20,
-                                      startWidth: 0.45,
-                                      endWidth: 0.45,
-                                      sizeUnit: GaugeSizeUnit.factor,
-                                      color: const Color(0xFFDD3800)),
-                                  GaugeRange(
-                                      startValue: 20.5,
-                                      endValue: 40,
-                                      startWidth: 0.45,
-                                      sizeUnit: GaugeSizeUnit.factor,
-                                      endWidth: 0.45,
-                                      color: const Color(0xFFFF4100)),
-                                  GaugeRange(
-                                      startValue: 40.5,
-                                      endValue: 60,
-                                      startWidth: 0.45,
-                                      sizeUnit: GaugeSizeUnit.factor,
-                                      endWidth: 0.45,
-                                      color: const Color(0xFFFFBA00)),
-                                  GaugeRange(
-                                      startValue: 60.5,
-                                      endValue: 80,
-                                      startWidth: 0.45,
-                                      sizeUnit: GaugeSizeUnit.factor,
-                                      endWidth: 0.45,
-                                      color: const Color(0xFFFFDF10)),
-                                  GaugeRange(
-                                      startValue: 80.5,
-                                      endValue: 100,
-                                      sizeUnit: GaugeSizeUnit.factor,
-                                      startWidth: 0.45,
-                                      endWidth: 0.45,
-                                      color: const Color(0xFF8BE724)),
-                                  GaugeRange(
-                                      startValue: 100.5,
-                                      endValue: 120,
-                                      startWidth: 0.45,
-                                      endWidth: 0.45,
-                                      sizeUnit: GaugeSizeUnit.factor,
-                                      color: const Color(0xFF64BE00)),
-                                ]),
+                              showAxisLine: false,
+                              showLabels: false,
+                              showTicks: false,
+                              startAngle: 180,
+                              endAngle: 360,
+                              interval: 6,
+                              minorTicksPerInterval: 10,
+                              radiusFactor: 0.93,
+                              labelOffset: 0,
+                              minimum: bmiData.thin3,
+                              maximum: bmiData.obesityIII,
+                              canScaleToFit: true,
+
+                              annotations: <GaugeAnnotation>[
+                                GaugeAnnotation(
+                                    angle: 175,
+                                    positionFactor: 0.8,
+                                    widget: Text(
+                                        '${bmiData.thin3.toStringAsFixed(2)}',
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold))),
+                                GaugeAnnotation(
+                                    angle: 5,
+                                    positionFactor: 0.8,
+                                    widget: Text(
+                                        '${bmiData.obesityIII.toStringAsFixed(2)}',
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold)))
+                              ],
+                              pointers: <GaugePointer>[
+                                NeedlePointer(
+                                    needleEndWidth: 5,
+                                    needleLength: 0.7,
+                                    value: resultBMI,
+                                    knobStyle: KnobStyle(knobRadius: 0)),
+                              ],
+                              ranges: <GaugeRange>[
+                                GaugeRange(
+                                  startValue: bmiData.thin3,
+                                  endValue: bmiData.thin1End,
+                                  startWidth: 0.45,
+                                  endWidth: 0.45,
+                                  sizeUnit: GaugeSizeUnit.factor,
+                                  color: const Color(0xFF94A1EF),
+                                ),
+                                GaugeRange(
+                                  startValue: bmiData.normalStart,
+                                  endValue: bmiData.normalEnd,
+                                  startWidth: 0.45,
+                                  endWidth: 0.45,
+                                  sizeUnit: GaugeSizeUnit.factor,
+                                  color: const Color(0xFF17FA00),
+                                ),
+                                GaugeRange(
+                                  startValue: bmiData.overWeightStart,
+                                  endValue: bmiData.overWeightEnd,
+                                  startWidth: 0.45,
+                                  endWidth: 0.45,
+                                  sizeUnit: GaugeSizeUnit.factor,
+                                  color: const Color(0xFFF6C404),
+                                ),
+                                GaugeRange(
+                                  startValue: bmiData.obesityIStart,
+                                  endValue: bmiData.obesityIEnd,
+                                  startWidth: 0.45,
+                                  endWidth: 0.45,
+                                  sizeUnit: GaugeSizeUnit.factor,
+                                  color: const Color(0xFFFD794A),
+                                ),
+                                GaugeRange(
+                                  startValue: bmiData.obesityIIStart,
+                                  endValue: bmiData.obesityIIEnd,
+                                  startWidth: 0.45,
+                                  endWidth: 0.45,
+                                  sizeUnit: GaugeSizeUnit.factor,
+                                  color: const Color(0xFFFF4100),
+                                ),
+                              ],
+                            ),
                             RadialAxis(
                               showAxisLine: false,
                               showLabels: false,
@@ -215,45 +162,14 @@ class ResultScreen extends StatelessWidget {
                               maximum: 120,
                               radiusFactor: 0.85,
                               canScaleToFit: true,
-                              pointers: <GaugePointer>[
-                                MarkerPointer(
-                                    markerType: MarkerType.text,
-                                    text: 'Poor',
-                                    value: 20.5,
-                                    textStyle: GaugeTextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 14,
-                                        fontFamily: 'Times'),
-                                    offsetUnit: GaugeSizeUnit.factor,
-                                    markerOffset: -0.12),
-                                MarkerPointer(
-                                    markerType: MarkerType.text,
-                                    text: 'Average',
-                                    value: 60.5,
-                                    textStyle: GaugeTextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 14,
-                                        fontFamily: 'Times'),
-                                    offsetUnit: GaugeSizeUnit.factor,
-                                    markerOffset: -0.12),
-                                MarkerPointer(
-                                    markerType: MarkerType.text,
-                                    text: 'Good',
-                                    value: 100.5,
-                                    textStyle: GaugeTextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 14,
-                                        fontFamily: 'Times'),
-                                    offsetUnit: GaugeSizeUnit.factor,
-                                    markerOffset: -0.12)
-                              ],
+                              pointers: <GaugePointer>[],
                             ),
                           ],
                         ),
                         Text(
-                          'You BMI',
+                          'You BMI ${resultBMI.toStringAsFixed(2)}',
                           style: TextStyle(
-                            fontSize: textSizeLarge,
+                            fontSize: textSizeMid,
                             fontWeight: FontWeight.w500,
                             color: textColor,
                           ),

@@ -14,3 +14,16 @@ class OnSwipeAge extends HomeScreenEvent {
 
   OnSwipeAge({required this.age});
 }
+
+class CalculationBMI extends HomeScreenEvent {
+  final int age;
+  final Gender gender;
+  final double weight, height;
+
+  CalculationBMI({
+    required this.age,
+    required this.gender,
+    required this.weight,
+    required this.height,
+  });
+}

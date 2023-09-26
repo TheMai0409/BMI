@@ -16,3 +16,13 @@ class SwipeAgeSuccess extends HomeScreenState {
 
   SwipeAgeSuccess({required this.age});
 }
+
+class CalculationBMISuccess extends HomeScreenState {
+  final BMIData bmiData;
+  final double bmi;
+
+  CalculationBMISuccess({
+    required this.bmiData,
+    required this.bmi,
+  });
+}
