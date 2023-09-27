@@ -17,9 +17,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
 
   @override
   void initState() {
-    super.initState();
     lists = getListBMI();
-    print('TheMD $lists');
+    print('TheMD ${lists!.length >= 1}');
+    print('TheMD Lists ${lists}');
+    super.initState();
+
   }
 
   @override
@@ -29,7 +31,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
         preferredSize: const Size(0.0, 0.0),
         child: Container(),
       ),
-      body: lists == null
+      body: lists!.isNotEmpty
           ? SingleChildScrollView(
               physics: ScrollPhysics(),
               child: Column(
