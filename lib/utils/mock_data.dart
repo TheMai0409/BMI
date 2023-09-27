@@ -1,5 +1,7 @@
 import 'package:bmi/model/bmi_data.dart';
 
+const int MALE = 0;
+const int FEMALE = 1;
 
 BMIData defaultBMI = BMIData(
   age: 1,

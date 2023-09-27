@@ -17,8 +17,8 @@ class OnSwipeAge extends HomeScreenEvent {
 
 class CalculationBMI extends HomeScreenEvent {
   final int age;
-  final Gender gender;
-  final double weight, height;
+  final int gender;
+  final String weight, height;
 
   CalculationBMI({
     required this.age,

@@ -1,10 +1,11 @@
 import 'package:hive_flutter/hive_flutter.dart';
 
+
 part 'user_bmi.g.dart';
 @HiveType(typeId: 0)
 class UserBMI {
   @HiveField(0)
-  DateTime? dateTime;
+  String? dateTime;
   @HiveField(1)
   double? bmi;
   @HiveField(2)
@@ -13,4 +14,9 @@ class UserBMI {
   int? gender;
 
   UserBMI({this.dateTime, this.bmi, this.age, this.gender});
+
+  @override
+  String toString() {
+    return 'UserBMI{dateTime: $dateTime, bmi: $bmi, age: $age, gender: $gender}';
+  }
 }

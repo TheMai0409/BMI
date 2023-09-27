@@ -6,10 +6,8 @@ import 'package:bmi/utils/mock_data.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
-import '../../../model/gender.dart';
 
 part 'home_screen_event.dart';
-
 part 'home_screen_state.dart';
 
 @injectable
@@ -29,27 +27,54 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
   }
 
   void _mapCalculationBMI(CalculationBMI event, Emitter<HomeScreenState> emit) {
-    double resultBMI = event.weight / pow(event.height / 100, 2);
-    if (event.age <= 19) {
-      if (event.gender == Gender.MALE) {
-        for (var bmi in bmiMales) {
-          if (bmi.age == event.age) {
-            emit(CalculationBMISuccess(bmiData: bmi, bmi: resultBMI));
-            print('TheMD MALE ${bmi.toString()}');
-          }
-        }
-      } else {
-        for (var bmi in bmiFeMales) {
-          if (bmi.age == event.age) {
-            emit(CalculationBMISuccess(bmiData: bmi, bmi: resultBMI));
-            print('TheMD FEMALE ${bmi.toString()}');
-          }
-        }
-      }
-    } else if (event.age > 20) {
-      emit(CalculationBMISuccess(bmiData: defaultBMI, bmi: resultBMI));
-      print('TheMD Defaul$defaultBMI');
+    double? weight = double.tryParse(event.weight);
+    double? height = double.tryParse(event.height);
+    if (height == null && weight != null) {
+      emit(HeightValidate());
+      return;
     }
-    print('TheMD $resultBMI');
+
+    if (height != null && weight == null) {
+      emit(WeightValidate());
+      return;
+    }
+    if (height != null && weight != null) {
+      if (height == 0.0 && weight == 0.0) {
+
+        emit(WeightAndHeightValidate());
+        return;
+      }
+      if (height == 0.0 && weight != 0.0) {
+        emit(HeightValidate());
+        return;
+      }
+      if (height != 0.0 && weight == 0.0) {
+        emit(WeightValidate());
+        return;
+      }
+      double resultBMI = weight / pow(height / 100, 2);
+      if (event.age <= 19) {
+        if (event.gender == MALE) {
+          for (var bmi in bmiMales) {
+            if (bmi.age == event.age) {
+
+              emit(CalculationBMISuccess(bmiData: bmi, bmi: resultBMI));
+
+            }
+          }
+        } else {
+          for (var bmi in bmiFeMales) {
+            if (bmi.age == event.age) {
+              emit(CalculationBMISuccess(bmiData: bmi, bmi: resultBMI));
+
+            }
+          }
+        }
+      } else if (event.age > 20) {
+        emit(CalculationBMISuccess(bmiData: defaultBMI, bmi: resultBMI));
+
+      }
+
+    }
   }
 }

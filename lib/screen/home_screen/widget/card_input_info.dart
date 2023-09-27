@@ -66,6 +66,7 @@ class CardInputInfo extends StatelessWidget {
                         fontSize: textSizeUnit,
                       ),
                     ),
+
                     style: const TextStyle(
                       color: textColor,
                       fontSize: textSizeLarge,

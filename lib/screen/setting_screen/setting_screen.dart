@@ -118,28 +118,13 @@ class SettingScreen extends StatelessWidget {
                 height: 25,
               ),
               ItemSetting(
-                iconData: Icons.rate_review_sharp,
+                iconData: Icons.star_border_outlined,
                 title: 'Rate us',
                 action: () {},
                 color: Color(0xFFC800FF),
                 colorContainer: Color(0xFFF5DEFD),
               ),
-              PanaraConfirmDialog.show(
-                context,
-                title: "Hello",
-                message: "This is the PanaraConfirmDialog",
-                confirmButtonText: "Confirm",
-                cancelButtonText: "Cancel",
-                onTapCancel: () {
-                  Navigator.pop(context);
-                },
-                onTapConfirm: () {
-                  Navigator.pop(context);
-                },
-                panaraDialogType: PanaraDialogType.normal,
-                barrierDismissible:
-                    false, // optional parameter (default is true)
-              )
+
             ],
           ),
         ));

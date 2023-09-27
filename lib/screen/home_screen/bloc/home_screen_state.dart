@@ -26,3 +26,9 @@ class CalculationBMISuccess extends HomeScreenState {
     required this.bmi,
   });
 }
+
+class HeightValidate extends HomeScreenState {}
+
+class WeightValidate extends HomeScreenState {}
+
+class WeightAndHeightValidate extends HomeScreenState {}

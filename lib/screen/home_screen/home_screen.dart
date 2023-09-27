@@ -1,6 +1,7 @@
 import 'package:bmi/component/custom_app_bar.dart';
 import 'package:bmi/component/ink_well_button.dart';
 import 'package:bmi/di/injection.dart';
+import 'package:bmi/manager/hive_manager.dart';
 import 'package:bmi/screen/home_screen/bloc/home_screen_bloc.dart';
 import 'package:bmi/screen/home_screen/widget/card_gender.dart';
 import 'package:bmi/screen/home_screen/widget/card_input_info.dart';
@@ -8,8 +9,10 @@ import 'package:bmi/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:numberpicker/numberpicker.dart';
+import 'package:panara_dialogs/panara_dialogs.dart';
 
-import '../../model/gender.dart';
+
+import '../../utils/mock_data.dart';
 import '../../utils/navigation_service.dart';
 import '../../utils/routes.dart';
 
@@ -24,15 +27,16 @@ class _HomeScreenState extends State<HomeScreen> {
   late int _currentAge;
   late String _currentWeight;
   late String _currentHeight;
-  late Gender _currentGender;
+  late int _currentGender;
 
   @override
   void initState() {
     super.initState();
-    _currentAge = 1;
-    _currentWeight = '0.0';
-    _currentHeight = '0.0';
-    _currentGender = Gender.MALE;
+    _currentAge = getAge();
+    _currentWeight = getWeight();
+    _currentHeight = getHeight();
+    _currentGender = getGender();
+    print('TheMD $_currentGender');
   }
 
   @override
@@ -72,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   child: CardInputInfo(
                                     title: 'Weight',
-                                    initValue: '0.0',
+                                    initValue: _currentWeight,
                                     textSuffix: 'kg',
                                     infoIndex: (weight) {
                                       _currentWeight = weight;
@@ -87,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: CardInputInfo(
                                     title: 'Height',
                                     textSuffix: 'cm',
-                                    initValue: '0.0',
+                                    initValue: _currentHeight,
                                     infoIndex: (height) {
                                       _currentHeight = height;
                                     },
@@ -112,12 +116,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                     icon: Icons.male_rounded,
                                     color: maleColor,
                                     onTap: () {
-                                      _currentGender = Gender.MALE;
+                                      _currentGender = MALE;
                                       context
                                           .read<HomeScreenBloc>()
                                           .add(OnTapGender(gender: 0));
                                     },
-                                    border: (_currentGender == Gender.MALE)
+                                    border: (_currentGender == MALE)
                                         ? BorderSide(
                                             color: maleColor, width: 3.0)
                                         : BorderSide(color: Colors.transparent),
@@ -133,12 +137,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                     icon: Icons.female_rounded,
                                     color: femaleColor,
                                     onTap: () {
-                                      _currentGender = Gender.FEMALE;
+                                      _currentGender = FEMALE;
                                       context
                                           .read<HomeScreenBloc>()
                                           .add(OnTapGender(gender: 1));
                                     },
-                                    border: (_currentGender == Gender.FEMALE)
+                                    border: (_currentGender == FEMALE)
                                         ? BorderSide(
                                             color: femaleColor, width: 3.0)
                                         : BorderSide(color: Colors.transparent),
@@ -209,8 +213,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   Align(
                     alignment: FractionalOffset.bottomCenter,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 30, vertical: 15),
+                      padding: const EdgeInsets.only(
+                          left: 30, right: 30, bottom: 10, top: 2),
                       child: Container(
                         height: 60,
                         width: MediaQuery.of(context).size.width,
@@ -221,13 +225,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         child: InkWellButton(
-                          onTap: () => {
+                          onTap: () {
                             context.read<HomeScreenBloc>().add(CalculationBMI(
                                   age: _currentAge,
                                   gender: _currentGender,
-                                  weight: double.parse(_currentWeight),
-                                  height: double.parse(_currentHeight),
-                                ))
+                                  weight: _currentWeight,
+                                  height: _currentHeight,
+                                ));
                           },
                           child: Center(
                             child: Text(
@@ -251,10 +255,40 @@ class _HomeScreenState extends State<HomeScreen> {
         listener: (BuildContext context, HomeScreenState state) {
           if (state is CalculationBMISuccess) {
             navService.pushNamed(RouteConstants.resultScreen,
-                args: {'bmiData': state.bmiData, 'resultBMI': state.bmi});
+                args: {'bmiData': state.bmiData, 'resultBMI': state.bmi, 'gender': _currentGender});
+            saveHeight(height: _currentHeight);
+            saveWeight(weight: _currentWeight);
+            saveAge(age: _currentAge);
+            saveGender(gender: _currentGender);
+          }
+
+          if (state is HeightValidate) {
+            showCustomDialog(title: 'Oops', message: 'Height  is validate');
+          }
+          if (state is WeightValidate) {
+            showCustomDialog(title: 'Oops', message: 'Weight is validate');
+          }
+          if (state is WeightAndHeightValidate) {
+            showCustomDialog(
+                title: 'Oops', message: 'Height and Weight is validate');
           }
         },
       ),
+    );
+  }
+
+  void showCustomDialog({required String title, required String message}) {
+    PanaraInfoDialog.show(
+      context,
+      title: title,
+      color: Color(0xFFFF2323),
+      message: message,
+      buttonText: 'OKAY',
+      panaraDialogType: PanaraDialogType.custom,
+      onTapDismiss: () {
+        Navigator.pop(context);
+      },
+      barrierDismissible: false, // optional parameter (default is true)
     );
   }
 }

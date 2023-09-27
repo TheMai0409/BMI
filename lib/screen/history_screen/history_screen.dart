@@ -1,8 +1,9 @@
-import 'package:bmi/utils/constants.dart';
+import 'package:bmi/manager/hive_manager.dart';
+import 'package:bmi/screen/history_screen/widget/item_bmi.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../component/custom_app_bar.dart';
+import '../../model/user_bmi.dart';
 
 class HistoryScreen extends StatefulWidget {
   const HistoryScreen({super.key});
@@ -12,6 +13,15 @@ class HistoryScreen extends StatefulWidget {
 }
 
 class _HistoryScreenState extends State<HistoryScreen> {
+  List<UserBMI>? lists;
+
+  @override
+  void initState() {
+    super.initState();
+    lists = getListBMI();
+    print('TheMD $lists');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,22 +29,36 @@ class _HistoryScreenState extends State<HistoryScreen> {
         preferredSize: const Size(0.0, 0.0),
         child: Container(),
       ),
-      body: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: Column(
-          children: [
-            const CustomAppBar(
-              title: 'History',
+      body: lists == null
+          ? SingleChildScrollView(
+              physics: ScrollPhysics(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomAppBar(
+                    title: 'History',
+                  ),
+                  ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return ItemBmi(item: lists![index]);
+                    },
+                    itemCount: lists!.length,
+                  )
+                ],
+              ),
+            )
+          : Column(
+              children: [
+                CustomAppBar(
+                  title: 'History',
+                ),
+                Spacer(),
+                Text('No history yet'),
+                Spacer()
+              ],
             ),
-            Spacer(),
-            Center(
-              child: Text('No history yet', style: TextStyle(color: Colors.grey, fontSize: textSizeMid),),
-            ),
-            Spacer()
-          ],
-        ),
-      ),
     );
   }
 }
