@@ -6,7 +6,6 @@ import 'package:bmi/utils/mock_data.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
-
 part 'home_screen_event.dart';
 part 'home_screen_state.dart';
 
@@ -59,20 +58,20 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
             if (bmi.age == event.age) {
 
               emit(CalculationBMISuccess(bmiData: bmi, bmi: resultBMI));
-
+              print('TheMD $bmi');
             }
           }
         } else {
           for (var bmi in bmiFeMales) {
             if (bmi.age == event.age) {
               emit(CalculationBMISuccess(bmiData: bmi, bmi: resultBMI));
-
+              print('TheMD $bmi');
             }
           }
         }
       } else if (event.age > 20) {
         emit(CalculationBMISuccess(bmiData: defaultBMI, bmi: resultBMI));
-
+        print('TheMD $defaultBMI');
       }
 
     }

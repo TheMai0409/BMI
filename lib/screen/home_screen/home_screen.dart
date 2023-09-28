@@ -11,7 +11,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:panara_dialogs/panara_dialogs.dart';
 
-
 import '../../utils/mock_data.dart';
 import '../../utils/navigation_service.dart';
 import '../../utils/routes.dart';
@@ -233,6 +232,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height: _currentHeight,
                                 ));
                           },
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(defaultBorderRadius),
+                          ),
                           child: Center(
                             child: Text(
                               'Caculation',
@@ -254,8 +256,13 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         listener: (BuildContext context, HomeScreenState state) {
           if (state is CalculationBMISuccess) {
-            navService.pushNamed(RouteConstants.resultScreen,
-                args: {'bmiData': state.bmiData, 'resultBMI': state.bmi, 'gender': _currentGender});
+            navService.pushNamed(RouteConstants.resultScreen, args: {
+              'bmiData': state.bmiData,
+              'resultBMI': state.bmi,
+              'gender': _currentGender,
+              'age': _currentAge,
+              'history': false
+            });
             saveHeight(height: _currentHeight);
             saveWeight(weight: _currentWeight);
             saveAge(age: _currentAge);

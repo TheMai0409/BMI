@@ -1,3 +1,5 @@
+import 'dart:math';
+
 bool checkYourBMI({
   required double bmi,
   double? bmiDataStart,
@@ -22,4 +24,10 @@ bool checkYourBMI({
     }
   }
   return isSelect;
+}
+
+int randomNumber() {
+  var rng = Random();
+  var randomNumber = 0 + rng.nextInt(200000);
+  return randomNumber;
 }

@@ -43,6 +43,8 @@ class _ResultScreenState extends State<ResultScreen> {
     final bmiData = arguments['bmiData'] as BMIData;
     final double resultBMI = arguments['resultBMI'];
     final int gender = arguments['gender'];
+    final int age = arguments['age'];
+    final bool typeScreen = arguments['history'];
 
     return BlocProvider(
       create: (context) => getIt<ResultScreenBloc>(),
@@ -124,7 +126,7 @@ class _ResultScreenState extends State<ResultScreen> {
                                           angle: 175,
                                           positionFactor: 0.8,
                                           widget: Text(
-                                              '${bmiData.thin3.toStringAsFixed(2)}',
+                                              '${bmiData.thin3.toStringAsFixed(1)}',
                                               style: TextStyle(
                                                   fontSize: 14,
                                                   fontWeight:
@@ -133,7 +135,7 @@ class _ResultScreenState extends State<ResultScreen> {
                                           angle: 5,
                                           positionFactor: 0.8,
                                           widget: Text(
-                                              '${bmiData.obesityIII.toStringAsFixed(2)}',
+                                              '${bmiData.obesityIII.toStringAsFixed(1)}',
                                               style: TextStyle(
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.bold)))
@@ -265,7 +267,7 @@ class _ResultScreenState extends State<ResultScreen> {
                                 ],
                               ),
                               Text(
-                                'Your BMI is: ${resultBMI.toStringAsFixed(2)}',
+                                'Your BMI is: ${resultBMI.toStringAsFixed(1)}',
                                 style: TextStyle(
                                   fontSize: textSizeSmall,
                                   fontWeight: FontWeight.w500,
@@ -364,30 +366,63 @@ class _ResultScreenState extends State<ResultScreen> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: defaultPadding, vertical: 10.0),
-                  child: Container(
-                    height: 60,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: const BoxDecoration(
-                      color: Color(0xFF0827F1),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(defaultBorderRadius),
+                Visibility(
+                  visible: typeScreen == false,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: defaultPadding, vertical: 10.0),
+                    child: Container(
+                      height: 60,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF0827F1),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(defaultBorderRadius),
+                        ),
+                      ),
+                      child: InkWellButton(
+                        onTap: () => {
+                          context.read<ResultScreenBloc>().add(SaveDataBMI(
+                              bmi: resultBMI, age: age, gender: gender))
+                        },
+                        child: Center(
+                          child: Text(
+                            'Save',
+                            style: TextStyle(
+                              fontSize: textSizeLarge,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                    child: InkWellButton(
-                      onTap: () => {
-                        context.read<ResultScreenBloc>().add(SaveDataBMI(
-                            bmi: resultBMI, age: bmiData.age, gender: gender))
-                      },
-                      child: Center(
-                        child: Text(
-                          'Save',
-                          style: TextStyle(
-                            fontSize: textSizeLarge,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white,
+                  ),
+                ),
+                Visibility(
+                  visible: typeScreen == true,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: defaultPadding, vertical: 10.0),
+                    child: Container(
+                      height: 60,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF0827F1),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(defaultBorderRadius),
+                        ),
+                      ),
+                      child: InkWellButton(
+                        onTap: () => {navService.goBack()},
+                        child: Center(
+                          child: Text(
+                            'Done',
+                            style: TextStyle(
+                              fontSize: textSizeLarge,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),

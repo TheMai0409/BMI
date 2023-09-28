@@ -28,7 +28,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
                 title: 'Article',
               ),
               const SizedBox(
-                height: 70,
+                height: 60,
               ),
               ItemArticle(title: 'Hello', isLove: true),
               ItemArticle(title: 'Hello', isLove: true),
