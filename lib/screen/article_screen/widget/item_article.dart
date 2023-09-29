@@ -5,10 +5,13 @@ import 'package:like_button/like_button.dart';
 class ItemArticle extends StatelessWidget {
   final String title;
   final bool isLove;
-  final Function(bool?)? onLove;
+  final Future<bool> Function(bool) onLikeButtonTapped;
 
   const ItemArticle(
-      {super.key, required this.title, required this.isLove, this.onLove});
+      {super.key,
+      required this.title,
+      required this.isLove,
+      required this.onLikeButtonTapped});
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +53,7 @@ class ItemArticle extends StatelessWidget {
                     dotPrimaryColor: Color(0xffe54949),
                     dotSecondaryColor: Color(0xffe70808),
                   ),
+                  onTap: onLikeButtonTapped,
                   likeBuilder: (bool isLiked) {
                     return Icon(
                       isLiked ? Icons.favorite : Icons.favorite_border,

@@ -63,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             title: 'BMI',
                           ),
                           const SizedBox(
-                            height: 70,
+                            height: 60,
                           ),
                           Row(
                             children: [
@@ -100,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           ),
                           const SizedBox(
-                            height: 20,
+                            height: 10,
                           ),
                           Row(
                             children: [
@@ -176,6 +176,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               child: SizedBox(
                                 width: MediaQuery.of(context).size.width,
+
                                 child: Column(
                                   children: [
                                     NumberPicker(
@@ -184,13 +185,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                         maxValue: 100,
                                         textStyle: const TextStyle(
                                           color: Colors.grey,
-                                          fontSize: textSizeMid,
-                                          fontWeight: FontWeight.w400,
+                                          fontSize: textSizeSmall,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                         selectedTextStyle: const TextStyle(
                                             color: textColor,
-                                            fontSize: textSizeNumber,
-                                            fontWeight: FontWeight.w500),
+                                            fontSize: textSizeLarge,
+                                            fontWeight: FontWeight.w600),
                                         step: 1,
                                         itemHeight: 100,
                                         axis: Axis.horizontal,

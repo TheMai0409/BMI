@@ -7,22 +7,23 @@ class ItemSetting extends StatelessWidget {
   final Color color;
   final Color colorContainer;
   final String title;
-  final VoidCallback action;
+  final VoidCallback onTap;
 
   const ItemSetting({
     super.key,
     required this.iconData,
     required this.title,
-    required this.action,
+    required this.onTap,
     required this.color,
     required this.colorContainer,
   });
 
   @override
   Widget build(BuildContext context) {
-    return InkWellButton(
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: defaultPadding),
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: defaultPadding),
+      child: InkWellButton(
+        borderRadius: BorderRadius.all(Radius.circular(defaultBorderRadius)),
         child: Row(
           children: [
             Container(
@@ -63,6 +64,7 @@ class ItemSetting extends StatelessWidget {
                 ))
           ],
         ),
+        onTap: onTap,
       ),
     );
   }

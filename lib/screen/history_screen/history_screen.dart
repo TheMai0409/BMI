@@ -3,6 +3,7 @@ import 'package:bmi/manager/hive_manager.dart';
 import 'package:bmi/screen/history_screen/widget/item_bmi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import '../../component/custom_app_bar.dart';
 import '../../model/user_bmi.dart';
@@ -24,6 +25,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
   void initState() {
     lists = getListBMI();
     print('TheMD ${lists!.length >= 1}');
+
     print('TheMD Lists ${lists}');
     super.initState();
   }
@@ -63,7 +65,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                           title: 'History',
                         ),
                         SizedBox(
-                          height: 60,
+                          height: 50,
                         ),
                         ListView.builder(
                           physics: NeverScrollableScrollPhysics(),

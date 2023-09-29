@@ -46,32 +46,30 @@ class CardInputInfo extends StatelessWidget {
             ),
             Expanded(
               flex: 2,
-              child: Center(
-                child: IntrinsicWidth(
-                  child: TextFormField(
-                    maxLines: 1,
-                    initialValue: initValue,
-                    textAlign: TextAlign.center,
-                    keyboardType: TextInputType.number,
-                    controller: controller,
-                    onChanged: infoIndex,
-                    maxLength: 5,
-                    decoration: InputDecoration(
-                      border:
-                          const OutlineInputBorder(borderSide: BorderSide.none),
-                      counterText: '',
-                      suffixText: ' $textSuffix',
-                      suffixStyle: const TextStyle(
-                        color: textColor,
-                        fontSize: textSizeUnit,
-                      ),
-                    ),
-
-                    style: const TextStyle(
+              child: IntrinsicWidth(
+                child: TextFormField(
+                  maxLines: 1,
+                  initialValue: initValue,
+                  textAlign: TextAlign.center,
+                  keyboardType: TextInputType.number,
+                  controller: controller,
+                  onChanged: infoIndex,
+                  maxLength: 5,
+                  decoration: InputDecoration(
+                    border:
+                        const OutlineInputBorder(borderSide: BorderSide.none),
+                    counterText: '',
+                    suffixText: ' $textSuffix',
+                    suffixStyle: const TextStyle(
                       color: textColor,
-                      fontSize: textSizeLarge,
-                      fontWeight: FontWeight.w500,
+                      fontSize: textSizeUnit,
                     ),
+                  ),
+
+                  style: const TextStyle(
+                    color: textColor,
+                    fontSize: textSizeLarge,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ),

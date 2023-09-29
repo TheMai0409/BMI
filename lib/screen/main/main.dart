@@ -3,10 +3,9 @@ import 'package:bmi/screen/main_screen/screen/main_screen.dart';
 import 'package:bmi/screen/result_screen/result_screen.dart';
 import 'package:bmi/screen/setting_screen/setting_screen.dart';
 import 'package:bmi/utils/navigation_service.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import "package:flutter_localizations/flutter_localizations.dart";
 
 import '../../di/injection.dart';
 import '../../manager/hive_manager.dart';
@@ -14,9 +13,15 @@ import '../../utils/routes.dart';
 import '../splash_screen/screen/splash_screen.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   await configureCoreDependencies();
   await openBox();
-  runApp(const MyApp());
+  runApp(EasyLocalization(
+      supportedLocales: [Locale('en'), Locale('vi')],
+      path: 'assets/translations',
+      fallbackLocale: Locale('en'),
+      child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -40,19 +45,9 @@ class _Body extends StatelessWidget {
       builder: (context, state) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          supportedLocales: const [
-            Locale('en'),
-            Locale('vi'),
-          ],
-          locale: (state is ChangeLocalState)
-              ? Locale(state.locale)
-              : const Locale('vi'),
-          localizationsDelegates: const [
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-            AppLocalizations.delegate,
-          ],
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
           navigatorKey: NavigationService.navigationKey,
           initialRoute: RouteConstants.root,
           routes: {
@@ -61,7 +56,7 @@ class _Body extends StatelessWidget {
             RouteConstants.mainScreen: (_) => const MainScreen(),
             RouteConstants.resultScreen: (_) => const ResultScreen(),
           },
-          );
+        );
       },
     );
   }

@@ -14,25 +14,38 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: defaultPadding, left: defaultPadding,right: defaultPadding),
+      height: 70,
+      padding: const EdgeInsets.only(top: 10, left: defaultPadding,right: defaultPadding),
       width: MediaQuery.of(context).size.width,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            title ?? "",
-            style: const TextStyle(
-              fontSize: textSizeNumber,
-              color: textColor,
-              fontWeight: FontWeight.w500,
+          Center(
+            child: Text(
+              title ?? "",
+              style: const TextStyle(
+                fontSize: textSizeNumber,
+                color: textColor,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
-          InkWellButton(
-            child: SvgPicture.asset(
-              'assets/images/ic_setting.svg',
+          Container(
+            padding: EdgeInsets.all(7),
+            height: 42,
+            width: 42,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(15)),
+              color: Color(0xFFD1EDFF),
             ),
-            onTap: () => {
-              navService.pushNamed(RouteConstants.settingScreen)},
+            child: InkWellButton(
+              child: SvgPicture.asset(
+                'assets/images/ic_setting.svg',
+              ),
+              onTap: () => {
+                navService.pushNamed(RouteConstants.settingScreen)},
+            ),
           )
         ],
       ),

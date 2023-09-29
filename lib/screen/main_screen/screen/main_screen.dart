@@ -4,6 +4,7 @@ import 'package:bmi/screen/history_screen/history_screen.dart';
 import 'package:bmi/screen/home_screen/home_screen.dart';
 import 'package:bmi/screen/main/bloc/language_bloc.dart';
 import 'package:bmi/utils/constants.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -75,13 +76,16 @@ class _MainScreenState extends State<MainScreen> {
                       }
                       _currentIndex = index;
                       if (_currentIndex % 2 == 0) {
-                        context
-                            .read<LanguageBloc>()
-                            .add(ChangeLanguage(locale: 'en'));
-                      } else {
+
+                        EasyLocalization.of(context)!.setLocale(Locale('vi'));
                         context
                             .read<LanguageBloc>()
                             .add(ChangeLanguage(locale: 'vi'));
+                      } else {
+                        EasyLocalization.of(context)!.setLocale(Locale('en'));
+                        context
+                            .read<LanguageBloc>()
+                            .add(ChangeLanguage(locale: 'en'));
                       }
 
                       context
@@ -97,19 +101,19 @@ class _MainScreenState extends State<MainScreen> {
                         icon: const Icon(
                           Icons.home_filled,
                         ),
-                        label: AppLocalizations.of(context)!.home,
+                        label: 'home'.tr(),
                       ),
                       BottomNavigationBarItem(
                         icon: const Icon(
                           Icons.article,
                         ),
-                        label: AppLocalizations.of(context)!.article,
+                        label: 'Article',
                       ),
                       BottomNavigationBarItem(
                         icon: const Icon(
                           Icons.date_range,
                         ),
-                        label: AppLocalizations.of(context)!.history,
+                        label: 'history'.tr(),
                       ),
                     ],
                   ),

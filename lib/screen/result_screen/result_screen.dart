@@ -408,7 +408,7 @@ class _ResultScreenState extends State<ResultScreen> {
                       height: 60,
                       width: MediaQuery.of(context).size.width,
                       decoration: const BoxDecoration(
-                        color: Color(0xFF0827F1),
+                        color: Color(0xFF5871F1),
                         borderRadius: BorderRadius.all(
                           Radius.circular(defaultBorderRadius),
                         ),

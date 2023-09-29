@@ -47,6 +47,38 @@ void saveAge({required int age}) {
   box.put('Age', age);
 }
 
+bool getArticles1() {
+  return box.get('Articles1', defaultValue: false);
+}
+
+void saveArticles1({required bool love}) {
+  box.put('Articles1', love);
+}
+
+bool getArticles2() {
+  return box.get('Articles2', defaultValue: false);
+}
+
+void saveArticles2({required bool love}) {
+  box.put('Articles2', love);
+}
+
+bool getArticles3() {
+  return box.get('Articles3', defaultValue: false);
+}
+
+void saveArticles3({required bool love}) {
+  box.put('Articles3', love);
+}
+
+bool getArticles4() {
+  return box.get('Articles4', defaultValue: false);
+}
+
+void saveArticles4({required bool love}) {
+  box.put('Articles4', love);
+}
+
 dynamic getGender() {
   return box.get('Gender', defaultValue: MALE);
 }
