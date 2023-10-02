@@ -269,7 +269,7 @@ class _ResultScreenState extends State<ResultScreen> {
                                 ],
                               ),
                               Text(
-                                'Your BMI is:'.tr() +
+                                'your_bmi'.tr() +
                                     ' ${resultBMI.toStringAsFixed(1)}',
                                 style: TextStyle(
                                   fontSize: textSizeSmall,
