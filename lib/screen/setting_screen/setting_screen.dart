@@ -46,7 +46,7 @@ class _SettingScreenState extends State<SettingScreen> {
                     ),
                     Spacer(),
                     Text(
-                      "Setting",
+                      'setting'.tr(),
                       style: const TextStyle(
                         fontSize: textSizeLarge,
                         color: textColor,
@@ -63,7 +63,7 @@ class _SettingScreenState extends State<SettingScreen> {
               Padding(
                 padding: const EdgeInsets.only(left: defaultPadding),
                 child: Text(
-                  'Setting',
+                  'setting'.tr(),
                   style: TextStyle(
                       color: textColor,
                       fontSize: textSizeSmall,
@@ -75,12 +75,12 @@ class _SettingScreenState extends State<SettingScreen> {
               ),
               ItemSetting(
                 iconData: Icons.language,
-                title: 'home'.tr(),
+                title: 'language'.tr(),
                 onTap: () {
                   context
                       .read<LanguageBloc>()
-                      .add(ChangeLanguage(locale: 'en'));
-                  EasyLocalization.of(context)!.setLocale(Locale('en'));
+                      .add(ChangeLanguage(locale: 'vi'));
+                  EasyLocalization.of(context)!.setLocale(Locale('vi'));
                 },
                 color: Color(0xFF4A6CF1),
                 colorContainer: Color(0xFFE6EAFA),
@@ -90,10 +90,10 @@ class _SettingScreenState extends State<SettingScreen> {
               ),
               ItemSetting(
                 iconData: Icons.delete_rounded,
-                title: 'Delete data',
+                title: 'delete_data'.tr(),
                 onTap: () {
                   showCustomDialog(
-                      title: 'Delete data', message: 'Are you sure?');
+                      title: 'delete_data'.tr(), message: 'are_sure'.tr());
                 },
                 color: Color(0xFFFF0000),
                 colorContainer: Color(0xFFF8E2E2),
@@ -104,7 +104,7 @@ class _SettingScreenState extends State<SettingScreen> {
               Padding(
                 padding: const EdgeInsets.only(left: defaultPadding),
                 child: Text(
-                  'Other',
+                  'other'.tr(),
                   style: TextStyle(
                       color: textColor,
                       fontSize: textSizeSmall,
@@ -116,7 +116,7 @@ class _SettingScreenState extends State<SettingScreen> {
               ),
               ItemSetting(
                 iconData: Icons.share,
-                title: 'Share App',
+                title: 'share_app'.tr(),
                 onTap: () {},
                 color: Color(0xFF5AAF43),
                 colorContainer: Color(0xFFD7FFD5),
@@ -136,7 +136,7 @@ class _SettingScreenState extends State<SettingScreen> {
               ),
               ItemSetting(
                 iconData: Icons.star_border_outlined,
-                title: 'Rate us',
+                title: 'rate_us'.tr(),
                 onTap: () {},
                 color: Color(0xFFC800FF),
                 colorContainer: Color(0xFFF5DEFD),

@@ -1,8 +1,12 @@
 import 'package:bmi/manager/hive_manager.dart';
 import 'package:bmi/screen/article_screen/widget/item_article.dart';
+import 'package:bmi/utils/mock_data.dart';
+import 'package:bmi/utils/navigation_service.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import '../../component/custom_app_bar.dart';
+import '../../utils/routes.dart';
 
 class ArticleScreen extends StatefulWidget {
   const ArticleScreen({super.key});
@@ -23,13 +27,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
 
     super.initState();
   }
-  Future<AppLocalizations> get l10n {
-    final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-    final preferred = widgetsBinding.window.locales;
-    const supported = AppLocalizations.supportedLocales;
-    final locale = basicLocaleListResolution(preferred, supported);
-    return AppLocalizations.delegate.load(locale);
-  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,31 +41,51 @@ class _ArticleScreenState extends State<ArticleScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const CustomAppBar(
-                title: 'Article',
+               CustomAppBar(
+                title: 'article'.tr(),
               ),
               const SizedBox(
                 height: 50,
               ),
               ItemArticle(
-                title: 'Hello',
+                title: 'article1_title1'.tr(),
                 isLove: _isLove1,
                 onLikeButtonTapped: onLikeButton1Tapped,
+                opTap: () {
+                  navService.pushNamed(RouteConstants.detailArticleScreen, args: {
+                    'articles': article1
+                  });
+                },
               ),
               ItemArticle(
-                title: 'Hello',
+                title: 'article2_title1'.tr(),
                 isLove: _isLove2,
                 onLikeButtonTapped: onLikeButton2Tapped,
+                opTap: () {
+                  navService.pushNamed(RouteConstants.detailArticleScreen, args: {
+                    'articles': article2
+                  });
+                },
               ),
               ItemArticle(
-                title: 'Hello',
+                title: 'article3_title1'.tr(),
                 isLove: _isLove3,
                 onLikeButtonTapped: onLikeButton3Tapped,
+                opTap: () {
+                  navService.pushNamed(RouteConstants.detailArticleScreen, args: {
+                    'articles': article3
+                  });
+                },
               ),
               ItemArticle(
-                title: 'Hello',
+                title: 'article4_title1'.tr(),
                 isLove: _isLove4,
                 onLikeButtonTapped: onLikeButton4Tapped,
+                opTap: () {
+                  navService.pushNamed(RouteConstants.detailArticleScreen, args: {
+                    'articles': article4
+                  });
+                },
               ),
             ],
           ),

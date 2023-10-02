@@ -1,6 +1,7 @@
 import 'package:bmi/model/bmi_data.dart';
 import 'package:bmi/screen/result_screen/bloc/result_screen_bloc.dart';
 import 'package:bmi/screen/result_screen/widget/text_info.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:panara_dialogs/panara_dialogs.dart';
@@ -27,7 +28,7 @@ class _ResultScreenState extends State<ResultScreen> {
       context,
       title: title,
       message: message,
-      buttonText: 'OKAY',
+      buttonText: 'okay'.tr(),
       panaraDialogType: PanaraDialogType.success,
       onTapDismiss: () {
         navService.pushNamedAndRemoveUntil(RouteConstants.mainScreen);
@@ -51,7 +52,8 @@ class _ResultScreenState extends State<ResultScreen> {
       child: BlocConsumer<ResultScreenBloc, ResultScreenState>(
         listener: (context, state) {
           if (state is SaveDataSuccess) {
-            showCustomDialog(title: 'Success', message: 'Save success');
+            showCustomDialog(
+                title: 'success'.tr(), message: 'save_success'.tr());
           }
         },
         builder: (context, state) {
@@ -86,7 +88,7 @@ class _ResultScreenState extends State<ResultScreen> {
                               ),
                               Spacer(),
                               Text(
-                                "Result",
+                                "result".tr(),
                                 style: const TextStyle(
                                   fontSize: textSizeLarge,
                                   color: textColor,
@@ -267,7 +269,8 @@ class _ResultScreenState extends State<ResultScreen> {
                                 ],
                               ),
                               Text(
-                                'Your BMI is: ${resultBMI.toStringAsFixed(1)}',
+                                'Your BMI is:'.tr() +
+                                    ' ${resultBMI.toStringAsFixed(1)}',
                                 style: TextStyle(
                                   fontSize: textSizeSmall,
                                   fontWeight: FontWeight.w500,
@@ -278,14 +281,14 @@ class _ResultScreenState extends State<ResultScreen> {
                           ),
                         ),
                         TextInfo(
-                          title: 'Extremely light weight',
+                          title: 'extremely_light_weight'.tr(),
                           color: thinI,
                           content: '<=${bmiData.thin3}',
                           bmi: resultBMI,
                           bmiDataStart: bmiData.thin3,
                         ),
                         TextInfo(
-                          title: 'Very light weight',
+                          title: 'very_light_weight'.tr(),
                           color: thinI,
                           content:
                               '${bmiData.thin2Start} - ${bmiData.thin2End}',
@@ -294,7 +297,7 @@ class _ResultScreenState extends State<ResultScreen> {
                           bmiDataEnd: bmiData.thin2End,
                         ),
                         TextInfo(
-                          title: 'Light weight',
+                          title: 'light_weight'.tr(),
                           color: thinI,
                           content:
                               '${bmiData.thin1Start} - ${bmiData.thin1End}',
@@ -303,7 +306,7 @@ class _ResultScreenState extends State<ResultScreen> {
                           bmiDataEnd: bmiData.thin1End,
                         ),
                         TextInfo(
-                          title: 'Normal',
+                          title: 'normal'.tr(),
                           color: normal,
                           content:
                               '${bmiData.normalStart} - ${bmiData.normalEnd}',
@@ -312,7 +315,7 @@ class _ResultScreenState extends State<ResultScreen> {
                           bmiDataEnd: bmiData.normalEnd,
                         ),
                         TextInfo(
-                          title: 'Overweight',
+                          title: 'overweight'.tr(),
                           color: overWeight,
                           content:
                               '${bmiData.overWeightStart} - ${bmiData.overWeightEnd}',
@@ -321,7 +324,7 @@ class _ResultScreenState extends State<ResultScreen> {
                           bmiDataEnd: bmiData.overWeightEnd,
                         ),
                         TextInfo(
-                          title: 'Obesity I',
+                          title: 'obesity_I'.tr(),
                           color: obesityI,
                           content:
                               '${bmiData.obesityIStart} - ${bmiData.obesityIEnd}',
@@ -330,7 +333,7 @@ class _ResultScreenState extends State<ResultScreen> {
                           bmiDataEnd: bmiData.obesityIEnd,
                         ),
                         TextInfo(
-                          title: 'Obesity II',
+                          title: 'obesity_II'.tr(),
                           color: obesityII,
                           content:
                               '${bmiData.obesityIIStart} - ${bmiData.obesityIIEnd}',
@@ -339,7 +342,7 @@ class _ResultScreenState extends State<ResultScreen> {
                           bmiDataEnd: bmiData.obesityIIEnd,
                         ),
                         TextInfo(
-                          title: 'Obesity III',
+                          title: 'obesity_III'.tr(),
                           color: obesityIII,
                           content: '>=${bmiData.obesityIII}',
                           bmi: resultBMI,
@@ -354,7 +357,7 @@ class _ResultScreenState extends State<ResultScreen> {
                           ),
                         ),
                         TextInfo(
-                          title: 'Ideal BMI range',
+                          title: 'ideal_range'.tr(),
                           color: normal,
                           content:
                               '${bmiData.normalStart} - ${bmiData.normalEnd}',
@@ -387,7 +390,7 @@ class _ResultScreenState extends State<ResultScreen> {
                         },
                         child: Center(
                           child: Text(
-                            'Save',
+                            'save'.tr(),
                             style: TextStyle(
                               fontSize: textSizeLarge,
                               fontWeight: FontWeight.w500,
@@ -417,7 +420,7 @@ class _ResultScreenState extends State<ResultScreen> {
                         onTap: () => {navService.goBack()},
                         child: Center(
                           child: Text(
-                            'Done',
+                            'done'.tr(),
                             style: TextStyle(
                               fontSize: textSizeLarge,
                               fontWeight: FontWeight.w500,

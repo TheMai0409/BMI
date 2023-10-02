@@ -1,7 +1,117 @@
+import 'package:bmi/model/article.dart';
 import 'package:bmi/model/bmi_data.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 const int MALE = 0;
 const int FEMALE = 1;
+
+List<Article> article1 = [
+  Article(
+    title: 'article1_title1'.tr(),
+    content: 'article1_content1'.tr(),
+  ),
+  Article(
+    title: 'article1_title2'.tr(),
+    content: 'article1_content2'.tr(),
+  ),
+  Article(
+    title: 'article1_title3'.tr(),
+    content: 'article1_content3'.tr(),
+  ),
+  Article(
+    title: 'article1_title4'.tr(),
+    content: 'article1_content4'.tr(),
+  ),
+  Article(
+    title: 'article1_title5'.tr(),
+    content: 'article1_content5'.tr(),
+  ),
+  Article(
+    title: 'article1_title6'.tr(),
+    content: 'article1_content6'.tr(),
+  )
+];
+
+List<Article> article2 = [
+  Article(
+    title: 'article2_title1'.tr(),
+    content: 'article2_content1'.tr(),
+  ),
+  Article(
+    title: 'article2_title2'.tr(),
+    content: 'article2_content2'.tr(),
+  ),
+  Article(
+    title: 'article2_title3'.tr(),
+    content: 'article2_content3'.tr(),
+  ),
+  Article(
+    title: 'article2_title4'.tr(),
+    content: 'article2_content4'.tr(),
+  ),
+  Article(
+    title: 'article2_title5'.tr(),
+    content: 'article2_content5'.tr(),
+  ),
+  Article(
+    title: 'article2_title6'.tr(),
+    content: 'article2_content6'.tr(),
+  ),
+  Article(
+    title: 'article2_title7'.tr(),
+    content: 'article2_content7'.tr(),
+  )
+];
+
+List<Article> article3 = [
+  Article(
+    title: 'article3_title1'.tr(),
+    content: 'article3_content1'.tr(),
+  ),
+  Article(
+    title: 'article3_title2'.tr(),
+    content: 'article3_content2'.tr(),
+  ),
+  Article(
+    title: 'article3_title3'.tr(),
+    content: 'article3_content3'.tr(),
+  ),
+  Article(
+    title: 'article3_title4'.tr(),
+    content: 'article3_content4'.tr(),
+  ),
+  Article(
+    title: 'article3_title5'.tr(),
+    content: 'article3_content5'.tr(),
+  ),
+  Article(
+    title: 'article3_title6'.tr(),
+    content: 'article3_content6'.tr(),
+  ),
+  Article(
+    title: 'article3_title7'.tr(),
+    content: 'article3_content7'.tr(),
+  ),
+  Article(
+    title: 'article3_title8'.tr(),
+    content: 'article3_content8'.tr(),
+  )
+];
+
+List<Article> article4 = [
+  Article(
+    title: 'article4_title1'.tr(),
+    content: 'article4_content1'.tr(),
+  ),
+  Article(
+    title: 'article4_title2'.tr(),
+    content: 'article4_content2'.tr(),
+  ),
+  Article(
+    title: 'article4_title3'.tr(),
+    content: 'article4_content3'.tr(),
+  )
+];
 
 BMIData defaultBMI = BMIData(
   age: 1,

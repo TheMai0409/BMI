@@ -29,8 +29,8 @@ class CardInputInfo extends StatelessWidget {
             borderRadius:
                 BorderRadius.all(Radius.circular(defaultBorderRadius))),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(
               flex: 1,

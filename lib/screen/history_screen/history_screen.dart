@@ -1,9 +1,9 @@
 import 'package:bmi/di/injection.dart';
 import 'package:bmi/manager/hive_manager.dart';
 import 'package:bmi/screen/history_screen/widget/item_bmi.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 
 import '../../component/custom_app_bar.dart';
 import '../../model/user_bmi.dart';
@@ -62,7 +62,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CustomAppBar(
-                          title: 'History',
+                          title: 'history'.tr(),
                         ),
                         SizedBox(
                           height: 50,
@@ -93,10 +93,17 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 : Column(
                     children: [
                       CustomAppBar(
-                        title: 'History',
+                        title: 'history'.tr(),
                       ),
                       Spacer(),
-                      Text('No history yet'),
+                      Text(
+                        'no_history'.tr(),
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                       Spacer()
                     ],
                   ),

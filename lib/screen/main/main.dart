@@ -1,3 +1,4 @@
+import 'package:bmi/screen/detail_article_screen/detail_article_screen.dart';
 import 'package:bmi/screen/main/bloc/language_bloc.dart';
 import 'package:bmi/screen/main_screen/screen/main_screen.dart';
 import 'package:bmi/screen/result_screen/result_screen.dart';
@@ -55,6 +56,7 @@ class _Body extends StatelessWidget {
             RouteConstants.settingScreen: (_) => const SettingScreen(),
             RouteConstants.mainScreen: (_) => const MainScreen(),
             RouteConstants.resultScreen: (_) => const ResultScreen(),
+            RouteConstants.detailArticleScreen: (_) => const DetailArticleScreen(),
           },
         );
       },

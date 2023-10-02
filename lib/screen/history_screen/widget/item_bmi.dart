@@ -2,6 +2,7 @@ import 'package:bmi/component/ink_well_button.dart';
 import 'package:bmi/model/user_bmi.dart';
 import 'package:bmi/utils/constants.dart';
 import 'package:bmi/utils/utils.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
@@ -88,7 +89,7 @@ class ItemBmi extends StatelessWidget {
                         height: 10,
                       ),
                       Text(
-                        'DateTime: ${item.dateTime}',
+                        'date_time'.tr() + ': ${item.dateTime}',
                         style:
                             const TextStyle(color: Colors.grey, fontSize: 16),
                       ),

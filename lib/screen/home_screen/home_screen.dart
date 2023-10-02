@@ -6,6 +6,7 @@ import 'package:bmi/screen/home_screen/bloc/home_screen_bloc.dart';
 import 'package:bmi/screen/home_screen/widget/card_gender.dart';
 import 'package:bmi/screen/home_screen/widget/card_input_info.dart';
 import 'package:bmi/utils/constants.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:numberpicker/numberpicker.dart';
@@ -74,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     right: 10.0,
                                   ),
                                   child: CardInputInfo(
-                                    title: 'Weight',
+                                    title: 'weight'.tr(),
                                     initValue: _currentWeight,
                                     textSuffix: 'kg',
                                     infoIndex: (weight) {
@@ -88,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   padding: const EdgeInsets.only(
                                       right: defaultPadding),
                                   child: CardInputInfo(
-                                    title: 'Height',
+                                    title: 'height'.tr(),
                                     textSuffix: 'cm',
                                     initValue: _currentHeight,
                                     infoIndex: (height) {
@@ -111,7 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     right: 10.0,
                                   ),
                                   child: CardGender(
-                                    title: 'Male',
+                                    title: 'male'.tr(),
                                     icon: Icons.male_rounded,
                                     color: maleColor,
                                     onTap: () {
@@ -132,7 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   padding:
                                       EdgeInsets.only(right: defaultPadding),
                                   child: CardGender(
-                                    title: 'Female',
+                                    title: 'female'.tr(),
                                     icon: Icons.female_rounded,
                                     color: femaleColor,
                                     onTap: () {
@@ -153,8 +154,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           const SizedBox(
                             height: 20,
                           ),
-                          const Text(
-                            'Age',
+                          Text(
+                            'age'.tr(),
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: textSizeSmall,
@@ -238,7 +239,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           child: Center(
                             child: Text(
-                              'Caculation',
+                              'calculation'.tr(),
                               style: TextStyle(
                                 fontSize: textSizeLarge,
                                 fontWeight: FontWeight.w500,
@@ -271,14 +272,14 @@ class _HomeScreenState extends State<HomeScreen> {
           }
 
           if (state is HeightValidate) {
-            showCustomDialog(title: 'Oops', message: 'Height  is validate');
+            showCustomDialog(title: 'oops'.tr(), message: 'height_error'.tr());
           }
           if (state is WeightValidate) {
-            showCustomDialog(title: 'Oops', message: 'Weight is validate');
+            showCustomDialog(title: 'oops'.tr(), message: 'weight_error'.tr());
           }
           if (state is WeightAndHeightValidate) {
             showCustomDialog(
-                title: 'Oops', message: 'Height and Weight is validate');
+                title: 'oops'.tr(), message: 'height_and_weight_error'.tr());
           }
         },
       ),
@@ -291,7 +292,7 @@ class _HomeScreenState extends State<HomeScreen> {
       title: title,
       color: Color(0xFFFF2323),
       message: message,
-      buttonText: 'OKAY',
+      buttonText: 'okay'.tr(),
       panaraDialogType: PanaraDialogType.custom,
       onTapDismiss: () {
         Navigator.pop(context);

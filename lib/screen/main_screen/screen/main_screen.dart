@@ -7,7 +7,6 @@ import 'package:bmi/utils/constants.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../bloc/main_screen_bloc.dart';
 
@@ -41,9 +40,11 @@ class _MainScreenState extends State<MainScreen> {
       child: BlocConsumer<MainScreenBloc, MainScreenState>(
         listener: (context, state) {
           if (state is TabChanged) {
-            _controller.animateToPage(state.tabIndex,
-                duration: const Duration(microseconds: 500000),
-                curve: Curves.easeInOutCubic);
+            _controller.animateToPage(
+              state.tabIndex,
+              duration: const Duration(milliseconds: 600),
+              curve: Curves.easeInOut,
+            );
           }
         },
         builder: (context, state) {
@@ -75,18 +76,18 @@ class _MainScreenState extends State<MainScreen> {
                         return;
                       }
                       _currentIndex = index;
-                      if (_currentIndex % 2 == 0) {
-
-                        EasyLocalization.of(context)!.setLocale(Locale('vi'));
-                        context
-                            .read<LanguageBloc>()
-                            .add(ChangeLanguage(locale: 'vi'));
-                      } else {
-                        EasyLocalization.of(context)!.setLocale(Locale('en'));
-                        context
-                            .read<LanguageBloc>()
-                            .add(ChangeLanguage(locale: 'en'));
-                      }
+                      // if (_currentIndex % 2 == 0) {
+                      //
+                      //   EasyLocalization.of(context)!.setLocale(Locale('vi'));
+                      //   context
+                      //       .read<LanguageBloc>()
+                      //       .add(ChangeLanguage(locale: 'vi'));
+                      // } else {
+                      //   EasyLocalization.of(context)!.setLocale(Locale('en'));
+                      //   context
+                      //       .read<LanguageBloc>()
+                      //       .add(ChangeLanguage(locale: 'en'));
+                      // }
 
                       context
                           .read<MainScreenBloc>()
@@ -101,7 +102,7 @@ class _MainScreenState extends State<MainScreen> {
                         icon: const Icon(
                           Icons.home_filled,
                         ),
-                        label: 'home'.tr(),
+                        label: 'bmi'.tr(),
                       ),
                       BottomNavigationBarItem(
                         icon: const Icon(
