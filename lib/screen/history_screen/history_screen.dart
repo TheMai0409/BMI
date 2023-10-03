@@ -26,12 +26,13 @@ class _HistoryScreenState extends State<HistoryScreen> {
   @override
   void initState() {
     lists = getListBMI();
-    print('TheMD ${lists!.isNotEmpty}');
-
-    print('TheMD Lists $lists');
     super.initState();
   }
-
+  @override
+  void didUpdateWidget(covariant HistoryScreen oldWidget) {
+    lists = getListBMI();
+    super.didUpdateWidget(oldWidget);
+  }
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

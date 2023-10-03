@@ -29,16 +29,16 @@ class _Body extends StatelessWidget {
                 ),
               ),
             ),
-            const Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  "PlanText",
-                  style: TextStyle(color: textColor),
-                ),
-              ),
-            )
+            // const Align(
+            //   alignment: Alignment.bottomCenter,
+            //   child: Padding(
+            //     padding: EdgeInsets.all(8.0),
+            //     child: Text(
+            //       "PlanText",
+            //       style: TextStyle(color: textColor),
+            //     ),
+            //   ),
+            // )
           ],
         ),
       ),
