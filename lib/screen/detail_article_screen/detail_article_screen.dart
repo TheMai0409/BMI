@@ -46,26 +46,40 @@ class _DetailArticleScreenState extends State<DetailArticleScreen> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    InkWellButton(
-
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        size: 28,
-                      ),
-                      onTap: () => {navService.goBack()},
+                  Container(
+                    padding: EdgeInsets.all(7),
+                    height: 42,
+                    width: 42,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      color: Color(0xFFF4F7F8),
                     ),
-
-                    Flexible(
-                      child: Text(
-                        '${articles[0].title}',
-                        style: const TextStyle(
-                          fontSize: textSizeSmall,
-                          color: textColor,
-                          fontWeight: FontWeight.w500,
-
+                    child: InkWellButton(
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Center(
+                            child: Icon(
+                              Icons.arrow_back_ios_new,
+                              size: 26,
+                              color: Color(0xFF3E4141),
+                            ),
+                          ),
                         ),
+                        onTap: () => {navService.goBack()}),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Flexible(
+                    child: Text(
+                      '${articles[0].title}',
+                      style: const TextStyle(
+                        fontSize: textSizeSmall,
+                        color: textColor,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
+                  ),
 
                   ],
                 ),

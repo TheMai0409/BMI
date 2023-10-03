@@ -2,20 +2,20 @@ import 'package:bmi/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../utils/navigation_service.dart';
-import '../utils/routes.dart';
 import 'ink_well_button.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String? title;
+  final VoidCallback goToScreen;
 
-  const CustomAppBar({super.key, this.title});
+  const CustomAppBar({super.key, this.title, required this.goToScreen});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 70,
-      padding: const EdgeInsets.only(top: 10, left: defaultPadding,right: defaultPadding),
+      padding: const EdgeInsets.only(
+          top: 10, left: defaultPadding, right: defaultPadding),
       width: MediaQuery.of(context).size.width,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -40,12 +40,10 @@ class CustomAppBar extends StatelessWidget {
               color: Color(0xFFD1EDFF),
             ),
             child: InkWellButton(
-              child: SvgPicture.asset(
-                'assets/images/ic_setting.svg',
-              ),
-              onTap: () => {
-                navService.pushNamed(RouteConstants.settingScreen)},
-            ),
+                child: SvgPicture.asset(
+                  'assets/images/ic_setting.svg',
+                ),
+                onTap: goToScreen),
           )
         ],
       ),

@@ -2,12 +2,13 @@ import 'package:bmi/di/injection.dart';
 import 'package:bmi/screen/article_screen/article_screen.dart';
 import 'package:bmi/screen/history_screen/history_screen.dart';
 import 'package:bmi/screen/home_screen/home_screen.dart';
-import 'package:bmi/screen/main/bloc/language_bloc.dart';
 import 'package:bmi/utils/constants.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../utils/navigation_service.dart';
+import '../../../utils/routes.dart';
 import '../bloc/main_screen_bloc.dart';
 
 class MainScreen extends StatefulWidget {
@@ -76,19 +77,6 @@ class _MainScreenState extends State<MainScreen> {
                         return;
                       }
                       _currentIndex = index;
-                      // if (_currentIndex % 2 == 0) {
-                      //
-                      //   EasyLocalization.of(context)!.setLocale(Locale('vi'));
-                      //   context
-                      //       .read<LanguageBloc>()
-                      //       .add(ChangeLanguage(locale: 'vi'));
-                      // } else {
-                      //   EasyLocalization.of(context)!.setLocale(Locale('en'));
-                      //   context
-                      //       .read<LanguageBloc>()
-                      //       .add(ChangeLanguage(locale: 'en'));
-                      // }
-
                       context
                           .read<MainScreenBloc>()
                           .add(OnTabChange(index: _currentIndex));
@@ -108,7 +96,7 @@ class _MainScreenState extends State<MainScreen> {
                         icon: const Icon(
                           Icons.article,
                         ),
-                        label: 'Article',
+                        label: 'article'.tr(),
                       ),
                       BottomNavigationBarItem(
                         icon: const Icon(
@@ -133,15 +121,27 @@ class _MainScreenState extends State<MainScreen> {
                 //     curve: Curves.easeIn);
               },
               controller: _controller,
-              children: const [
-                HomeScreen(),
-                ArticleScreen(),
-                HistoryScreen(),
+              children: [
+                HomeScreen(
+                  goToSettingScreen: goToSettingScreen,
+                ),
+                ArticleScreen(
+                  goToSettingScreen: goToSettingScreen,
+                ),
+                HistoryScreen(
+                  goToSettingScreen: goToSettingScreen,
+                ),
               ],
             ),
           );
         },
       ),
     );
+  }
+
+  void goToSettingScreen() {
+    navService
+        .pushNamed(RouteConstants.settingScreen)
+        .then((value) => setState(() {}));
   }
 }

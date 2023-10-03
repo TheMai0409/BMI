@@ -8,10 +8,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../di/injection.dart';
-import '../../manager/hive_manager.dart';
-import '../../utils/routes.dart';
-import '../splash_screen/screen/splash_screen.dart';
+import 'di/injection.dart';
+import 'manager/hive_manager.dart';
+import 'utils/routes.dart';
+import 'screen/splash_screen/screen/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,7 +42,12 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LanguageBloc, LanguageState>(
+    return BlocConsumer<LanguageBloc, LanguageState>(
+      listener: (BuildContext context, LanguageState state) {
+        if (state is ChangeLocalState) {
+          EasyLocalization.of(context)!.setLocale(Locale(state.locale));
+        }
+      },
       builder: (context, state) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,

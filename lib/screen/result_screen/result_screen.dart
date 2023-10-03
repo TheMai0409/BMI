@@ -77,14 +77,27 @@ class _ResultScreenState extends State<ResultScreen> {
                               right: defaultPadding),
                           width: MediaQuery.of(context).size.width,
                           child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              InkWellButton(
-                                child: Icon(
-                                  Icons.arrow_back_ios,
-                                  size: 30,
+                              Container(
+                                height: 42,
+                                width: 42,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                                  color: Color(0xFFE4E6E8),
                                 ),
-                                onTap: () => {navService.goBack()},
+                                child: InkWellButton(
+                                    child: Align(
+                                      alignment: Alignment.center,
+                                      child: Center(
+                                        child: Icon(
+                                          Icons.arrow_back_ios_new,
+                                          size: 26,
+                                          color: Color(0xFF3E4141),
+                                        ),
+                                      ),
+                                    ),
+                                    onTap: () => {navService.goBack()}),
                               ),
                               Spacer(),
                               Text(

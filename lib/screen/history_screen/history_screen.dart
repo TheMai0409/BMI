@@ -12,7 +12,9 @@ import '../../utils/routes.dart';
 import 'bloc/history_screen_bloc.dart';
 
 class HistoryScreen extends StatefulWidget {
-  const HistoryScreen({super.key});
+  final VoidCallback goToSettingScreen;
+
+  const HistoryScreen({super.key, required this.goToSettingScreen});
 
   @override
   State<HistoryScreen> createState() => _HistoryScreenState();
@@ -63,6 +65,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       children: [
                         CustomAppBar(
                           title: 'history'.tr(),
+                          goToScreen: widget.goToSettingScreen,
                         ),
                         SizedBox(
                           height: 50,
@@ -94,6 +97,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     children: [
                       CustomAppBar(
                         title: 'history'.tr(),
+                        goToScreen: widget.goToSettingScreen,
                       ),
                       Spacer(),
                       Text(

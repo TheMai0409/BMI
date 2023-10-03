@@ -17,7 +17,9 @@ import '../../utils/navigation_service.dart';
 import '../../utils/routes.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final VoidCallback goToSettingScreen;
+
+  const HomeScreen({super.key, required this.goToSettingScreen});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -60,8 +62,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          const CustomAppBar(
+                          CustomAppBar(
                             title: 'BMI',
+                            goToScreen: widget.goToSettingScreen,
                           ),
                           const SizedBox(
                             height: 60,

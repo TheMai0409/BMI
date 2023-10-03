@@ -23,6 +23,5 @@ const double textSizeNumber = 32.0;
 
 const double defaultBorderRadius = 25.0;
 const double defaultPadding = 23.0;
-
-
-
+const String linkAppInCHPlay = '';
+const String linkAppInAppStore = '';
