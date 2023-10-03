@@ -25,3 +25,6 @@ const double defaultBorderRadius = 25.0;
 const double defaultPadding = 23.0;
 const String linkAppInCHPlay = '';
 const String linkAppInAppStore = '';
+
+const playStoreId = 'com.example.bmi';
+const appstoreId = 'com.appstore.bmi';

@@ -2,14 +2,13 @@ import 'package:bmi/manager/hive_manager.dart';
 import 'package:bmi/screen/setting_screen/widget/item_setting.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:panara_dialogs/panara_dialogs.dart';
+import 'package:rate_my_app/rate_my_app.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../component/ink_well_button.dart';
 import '../../utils/constants.dart';
 import '../../utils/navigation_service.dart';
-import '../main/bloc/language_bloc.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({super.key});
@@ -19,6 +18,22 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
+  RateMyApp rateMyApp = RateMyApp(
+    minDays: 0,
+    minLaunches: 2,
+    googlePlayIdentifier: playStoreId,
+    appStoreIdentifier: appstoreId,
+  );
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await rateMyApp.init();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,12 +56,12 @@ class _SettingScreenState extends State<SettingScreen> {
                     Container(
                       height: 42,
                       width: 42,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(15)),
                         color: Color(0xFFE4E6E8),
                       ),
                       child: InkWellButton(
-                          child: Align(
+                          child: const Align(
                             alignment: Alignment.center,
                             child: Center(
                               child: Icon(
@@ -58,7 +73,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           ),
                           onTap: () => {navService.goBack()}),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Text(
                       'setting'.tr(),
                       style: const TextStyle(
@@ -67,37 +82,37 @@ class _SettingScreenState extends State<SettingScreen> {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    Spacer()
+                    const Spacer()
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 45,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: defaultPadding),
                 child: Text(
                   'setting'.tr(),
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: textColor,
                       fontSize: textSizeSmall,
                       fontWeight: FontWeight.w500),
                 ),
               ),
-              SizedBox(
-                height: 25,
+              const SizedBox(
+                height: 15,
               ),
               ItemSetting(
                 iconData: Icons.language,
                 title: 'language'.tr(),
                 onTap: () {
-                  showLanguageDialog(title: 'language'.tr());
+                  showLanguageDialog(title: 'select_language'.tr());
                 },
-                color: Color(0xFF4A6CF1),
-                colorContainer: Color(0xFFE6EAFA),
+                color: const Color(0xFF4A6CF1),
+                colorContainer: const Color(0xFFE6EAFA),
               ),
-              SizedBox(
-                height: 25,
+              const SizedBox(
+                height: 15,
               ),
               ItemSetting(
                 iconData: Icons.delete_rounded,
@@ -106,24 +121,24 @@ class _SettingScreenState extends State<SettingScreen> {
                   showCustomDialog(
                       title: 'delete_data'.tr(), message: 'are_sure'.tr());
                 },
-                color: Color(0xFFFF0000),
-                colorContainer: Color(0xFFF8E2E2),
+                color: const Color(0xFFFF0000),
+                colorContainer: const Color(0xFFF8E2E2),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 45,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: defaultPadding),
                 child: Text(
                   'other'.tr(),
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: textColor,
                       fontSize: textSizeSmall,
                       fontWeight: FontWeight.w500),
                 ),
               ),
-              SizedBox(
-                height: 25,
+              const SizedBox(
+                height: 15,
               ),
               ItemSetting(
                 iconData: Icons.share,
@@ -135,43 +150,78 @@ class _SettingScreenState extends State<SettingScreen> {
                     'Link App in CH Play $linkAppInCHPlay \nLink App In AppStore $linkAppInAppStore',
                     subject: null,
                     sharePositionOrigin:
-                        box!.localToGlobal(Offset.zero) & box.size,
+                    box!.localToGlobal(Offset.zero) & box.size,
                   );
                 },
-                color: Color(0xFF5AAF43),
-                colorContainer: Color(0xFFD7FFD5),
+                color: const Color(0xFF5AAF43),
+                colorContainer: const Color(0xFFD7FFD5),
               ),
-              SizedBox(
-                height: 25,
+              const SizedBox(
+                height: 15,
               ),
-              ItemSetting(
-                iconData: Icons.mail,
-                title: 'Mail',
-                onTap: () {},
-                color: Color(0xFF3140EE),
-                colorContainer: Color(0xFFDDE6F8),
-              ),
-              SizedBox(
-                height: 25,
-              ),
+              // ItemSetting(
+              //   iconData: Icons.mail,
+              //   title: 'Mail',
+              //   onTap: () {},
+              //   color: Color(0xFF3140EE),
+              //   colorContainer: Color(0xFFDDE6F8),
+              // ),
+              // SizedBox(
+              //   height: 25,
+              // ),
               ItemSetting(
                 iconData: Icons.star_border_outlined,
                 title: 'rate_us'.tr(),
-                onTap: () {},
-                color: Color(0xFFC800FF),
-                colorContainer: Color(0xFFF5DEFD),
+                onTap: () {
+                  rateMyApp.showStarRateDialog(
+                    context,
+                    title: 'rate'.tr(),
+                    message: 'rate_content'.tr(),
+                    starRatingOptions: const StarRatingOptions(initialRating: 5),
+                    actionsBuilder: actionsBuilder,
+                  );
+                },
+                color: const Color(0xFFC800FF),
+                colorContainer: const Color(0xFFF5DEFD),
               ),
             ],
           ),
         ));
   }
 
+  List<Widget> actionsBuilder(BuildContext context, double? stars) =>
+      stars == null
+          ? [buildCancelButton()]
+          : [buildOkButton(stars), buildCancelButton()];
+
+  Widget buildOkButton(double stars) => TextButton(
+        child: Text('okay'.tr()),
+        onPressed: () async {
+          final launchAppStore = stars >= 4;
+
+          const event = RateMyAppEventType.rateButtonPressed;
+
+          await rateMyApp.callEvent(event);
+
+          if (launchAppStore) {
+            rateMyApp.launchStore();
+          }
+
+          Navigator.of(context).pop();
+        },
+      );
+
+  Widget buildCancelButton() => RateMyAppNoButton(
+        rateMyApp,
+        text: "cancel".tr(),
+      );
+
   void showCustomDialog({required String title, required String message}) {
     PanaraConfirmDialog.show(
       context,
       title: title,
       message: message,
-      color: Color(0xFFFF0000),
+      color: const Color(0xFFFF0000),
       confirmButtonText: "confirm".tr(),
       cancelButtonText: "cancel".tr(),
       onTapCancel: () {
@@ -191,44 +241,44 @@ class _SettingScreenState extends State<SettingScreen> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12.0),
       ),
-      child: Container(
-        height: 300.0,
+      child: SizedBox(
+        height: 250.0,
         width: 300.0,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(15.0),
               child: Text(
                 title,
-                style: TextStyle(
+                style: const TextStyle(
                   color: textColor,
                   fontSize: textSizeMid,
                   fontWeight: FontWeight.w500,
                 ),
               ),
             ),
-            SizedBox(
-              height: 30,
+            const SizedBox(
+              height: 10,
             ),
             InkWellButton(
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10),
                 child: Row(
                   children: [
-                    Text('English',
+                    const Text('English',
                         style: TextStyle(
                             color: textColor,
                             fontSize: 18,
                             fontWeight: FontWeight.w500)),
-                    Spacer(),
+                    const Spacer(),
                     Visibility(
                       maintainSize: true,
                       maintainAnimation: true,
                       maintainState: true,
                       visible: EasyLocalization.of(context)!.currentLocale ==
-                          Locale('en'),
-                      child: Icon(
+                          const Locale('en'),
+                      child: const Icon(
                         Icons.circle,
                         color: Colors.indigoAccent,
                         size: 13,
@@ -238,31 +288,30 @@ class _SettingScreenState extends State<SettingScreen> {
                 ),
               ),
               onTap: () {
-                EasyLocalization.of(context)!.setLocale(Locale('en'));
-                context.read<LanguageBloc>().add(ChangeLanguage(locale: 'en'));
+                EasyLocalization.of(context)!.setLocale(const Locale('en'));
                 Navigator.pop(context);
               },
             ),
             InkWellButton(
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10),
                 child: Row(
                   children: [
-                    Text(
+                    const Text(
                       'Tiếng Việt',
                       style: TextStyle(
                           color: textColor,
                           fontSize: 18,
                           fontWeight: FontWeight.w500),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Visibility(
                       maintainSize: true,
                       maintainAnimation: true,
                       maintainState: true,
                       visible: EasyLocalization.of(context)!.currentLocale ==
-                          Locale('vi'),
-                      child: Icon(
+                          const Locale('vi'),
+                      child: const Icon(
                         Icons.circle,
                         color: Colors.indigoAccent,
                         size: 13,
@@ -272,20 +321,19 @@ class _SettingScreenState extends State<SettingScreen> {
                 ),
               ),
               onTap: () {
-                EasyLocalization.of(context)!.setLocale(Locale('vi'));
-                context.read<LanguageBloc>().add(ChangeLanguage(locale: 'vi'));
+                EasyLocalization.of(context)!.setLocale(const Locale('vi'));
                 Navigator.pop(context);
               },
             ),
-            Spacer(),
+            const Spacer(),
             Align(
               alignment: FractionalOffset.bottomCenter,
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10),
+                const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10),
                 child: Container(
                   height: 60,
-                  width: MediaQuery.of(context).size.width,
+                  width: 80,
                   decoration: const BoxDecoration(
                     color: Color(0xFFEAEBEC),
                     borderRadius: BorderRadius.all(
@@ -296,14 +344,14 @@ class _SettingScreenState extends State<SettingScreen> {
                     onTap: () {
                       Navigator.pop(context);
                     },
-                    borderRadius: BorderRadius.all(
+                    borderRadius: const BorderRadius.all(
                       Radius.circular(defaultBorderRadius),
                     ),
                     child: Center(
                       child: Text(
-                        'cancel'.tr(),
-                        style: TextStyle(
-                          fontSize: textSizeSmall,
+                        'close'.tr(),
+                        style: const TextStyle(
+                          fontSize: 20,
                           fontWeight: FontWeight.w500,
                           color: Colors.black,
                         ),

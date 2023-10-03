@@ -47,15 +47,15 @@ class _DetailArticleScreenState extends State<DetailArticleScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                   Container(
-                    padding: EdgeInsets.all(7),
+                    padding: const EdgeInsets.all(7),
                     height: 42,
                     width: 42,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(15)),
                       color: Color(0xFFF4F7F8),
                     ),
                     child: InkWellButton(
-                        child: Align(
+                        child: const Align(
                           alignment: Alignment.center,
                           child: Center(
                             child: Icon(
@@ -67,7 +67,7 @@ class _DetailArticleScreenState extends State<DetailArticleScreen> {
                         ),
                         onTap: () => {navService.goBack()}),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Flexible(

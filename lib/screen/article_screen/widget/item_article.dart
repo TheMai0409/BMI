@@ -21,11 +21,12 @@ class ItemArticle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWellButton(
-      borderRadius: BorderRadius.all(
+      borderRadius: const BorderRadius.all(
         Radius.circular(18.0),
       ),
+      onTap: opTap,
       child: Card(
-        margin: EdgeInsets.symmetric(horizontal: defaultPadding, vertical: 10),
+        margin: const EdgeInsets.symmetric(horizontal: defaultPadding, vertical: 10),
         elevation: 0,
         color: const Color(0xFFEFEFEF),
         shape: const RoundedRectangleBorder(
@@ -34,12 +35,12 @@ class ItemArticle extends StatelessWidget {
           ),
         ),
         child: Container(
-          padding: EdgeInsets.all(15.0),
+          padding: const EdgeInsets.all(15.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Text(
@@ -50,7 +51,7 @@ class ItemArticle extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Row(
@@ -58,14 +59,14 @@ class ItemArticle extends StatelessWidget {
                 children: [
                   Text(
                     'time_read'.tr(),
-                    style: TextStyle(color: Colors.black54),
+                    style: const TextStyle(color: Colors.black54),
                   ),
                   LikeButton(
                     size: 23,
                     isLiked: isLove,
-                    circleColor: CircleColor(
+                    circleColor: const CircleColor(
                         start: Color(0xffef3c3c), end: Color(0xfffc0000)),
-                    bubblesColor: BubblesColor(
+                    bubblesColor: const BubblesColor(
                       dotPrimaryColor: Color(0xffe54949),
                       dotSecondaryColor: Color(0xffe70808),
                     ),
@@ -73,21 +74,20 @@ class ItemArticle extends StatelessWidget {
                     likeBuilder: (bool isLiked) {
                       return Icon(
                         isLiked ? Icons.favorite : Icons.favorite_border,
-                        color: isLiked ? Color(0xffff0101) : Color(0xff706f6f),
+                        color: isLiked ? const Color(0xffff0101) : const Color(0xff706f6f),
                         size: 23,
                       );
                     },
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
             ],
           ),
         ),
       ),
-      onTap: opTap,
     );
   }
 }

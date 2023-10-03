@@ -22,16 +22,17 @@ class CardGender extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWellButton(
-      borderRadius: BorderRadius.all(
+      borderRadius: const BorderRadius.all(
         Radius.circular(defaultBorderRadius),
       ),
+      onTap: onTap,
       child: SizedBox(
         height: MediaQuery.of(context).size.width * 0.43,
         child: Card(
           elevation: 0,
           color: cardColor,
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
+              borderRadius: const BorderRadius.all(
                 Radius.circular(defaultBorderRadius),
               ),
               side: border),
@@ -58,7 +59,6 @@ class CardGender extends StatelessWidget {
           ),
         ),
       ),
-      onTap: onTap,
     );
   }
 }

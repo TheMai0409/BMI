@@ -21,16 +21,17 @@ class ItemSetting extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: defaultPadding),
+      padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
       child: InkWellButton(
-        borderRadius: BorderRadius.all(Radius.circular(defaultBorderRadius)),
+        borderRadius: const BorderRadius.all(Radius.circular(defaultBorderRadius)),
+        onTap: onTap,
         child: Row(
           children: [
             Container(
               width: 45,
               height: 45,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(100)),
+                borderRadius: const BorderRadius.all(Radius.circular(100)),
                 color: colorContainer,
               ),
               child: Icon(
@@ -39,32 +40,31 @@ class ItemSetting extends StatelessWidget {
                 size: 25,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 20,
             ),
             Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                 color: textColor,
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
               ),
             ),
-            Spacer(),
+            const Spacer(),
             Container(
                 width: 45,
                 height: 45,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(15)),
                   color: Color(0xFFEFEFEF),
                 ),
-                child: Icon(
+                child: const Icon(
                   Icons.arrow_forward_ios,
                   size: 15,
                 ))
           ],
         ),
-        onTap: onTap,
       ),
     );
   }

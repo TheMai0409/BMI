@@ -43,7 +43,7 @@ class ItemBmi extends StatelessWidget {
               Expanded(
                 child: InkWellButton(
                   child: Padding(
-                    padding: EdgeInsets.only(left: 10),
+                    padding: const EdgeInsets.only(left: 10),
                     child: DecoratedBox(
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(
@@ -54,7 +54,7 @@ class ItemBmi extends StatelessWidget {
                         ),
                         borderRadius: BorderRadius.circular(12.0),
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons.delete_rounded,
                         color: Color(0xFFFF0000),
                       ),
@@ -67,12 +67,12 @@ class ItemBmi extends StatelessWidget {
               )
             ],
           ),
-          child: Container(
+          child: SizedBox(
             height: 70,
             width: MediaQuery.of(context).size.width,
             child: Row(
               children: [
-                Container(
+                SizedBox(
                   height: double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,26 +85,26 @@ class ItemBmi extends StatelessWidget {
                             fontWeight: FontWeight.w700,
                             fontSize: 20),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Text(
-                        'date_time'.tr() + ': ${item.dateTime}',
+                        '${'date_time'.tr()}: ${item.dateTime}',
                         style:
                             const TextStyle(color: Colors.grey, fontSize: 16),
                       ),
                     ],
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 Container(
                     height: double.infinity,
                     width: 50,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(15)),
                       color: Color(0xFFEFEFEF),
                     ),
-                    child: Icon(
+                    child: const Icon(
                       Icons.arrow_forward_ios,
                       size: 15,
                     ))

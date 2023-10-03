@@ -82,12 +82,12 @@ class _ResultScreenState extends State<ResultScreen> {
                               Container(
                                 height: 42,
                                 width: 42,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   borderRadius: BorderRadius.all(Radius.circular(15)),
                                   color: Color(0xFFE4E6E8),
                                 ),
                                 child: InkWellButton(
-                                    child: Align(
+                                    child: const Align(
                                       alignment: Alignment.center,
                                       child: Center(
                                         child: Icon(
@@ -99,7 +99,7 @@ class _ResultScreenState extends State<ResultScreen> {
                                     ),
                                     onTap: () => {navService.goBack()}),
                               ),
-                              Spacer(),
+                              const Spacer(),
                               Text(
                                 "result".tr(),
                                 style: const TextStyle(
@@ -108,14 +108,14 @@ class _ResultScreenState extends State<ResultScreen> {
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
-                              Spacer()
+                              const Spacer()
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 40,
                         ),
-                        Container(
+                        SizedBox(
                           height: 300,
                           width: MediaQuery.of(context).size.width,
                           child: Stack(
@@ -141,8 +141,8 @@ class _ResultScreenState extends State<ResultScreen> {
                                           angle: 175,
                                           positionFactor: 0.8,
                                           widget: Text(
-                                              '${bmiData.thin3.toStringAsFixed(1)}',
-                                              style: TextStyle(
+                                              bmiData.thin3.toStringAsFixed(1),
+                                              style: const TextStyle(
                                                   fontSize: 14,
                                                   fontWeight:
                                                       FontWeight.bold))),
@@ -150,8 +150,8 @@ class _ResultScreenState extends State<ResultScreen> {
                                           angle: 5,
                                           positionFactor: 0.8,
                                           widget: Text(
-                                              '${bmiData.obesityIII.toStringAsFixed(1)}',
-                                              style: TextStyle(
+                                              bmiData.obesityIII.toStringAsFixed(1),
+                                              style: const TextStyle(
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.bold)))
                                     ],
@@ -237,7 +237,7 @@ class _ResultScreenState extends State<ResultScreen> {
                                         markerType: MarkerType.text,
                                         text: '${bmiData.normalStart}',
                                         value: bmiData.normalStart,
-                                        textStyle: GaugeTextStyle(
+                                        textStyle: const GaugeTextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 14,
                                         ),
@@ -248,7 +248,7 @@ class _ResultScreenState extends State<ResultScreen> {
                                         markerType: MarkerType.text,
                                         text: '${bmiData.overWeightStart}',
                                         value: bmiData.overWeightStart,
-                                        textStyle: GaugeTextStyle(
+                                        textStyle: const GaugeTextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 14,
                                         ),
@@ -259,7 +259,7 @@ class _ResultScreenState extends State<ResultScreen> {
                                         markerType: MarkerType.text,
                                         text: '${bmiData.obesityIStart}',
                                         value: bmiData.obesityIStart,
-                                        textStyle: GaugeTextStyle(
+                                        textStyle: const GaugeTextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 14,
                                         ),
@@ -270,7 +270,7 @@ class _ResultScreenState extends State<ResultScreen> {
                                         markerType: MarkerType.text,
                                         text: '${bmiData.obesityIIStart}',
                                         value: bmiData.obesityIIStart,
-                                        textStyle: GaugeTextStyle(
+                                        textStyle: const GaugeTextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 14,
                                         ),
@@ -282,9 +282,8 @@ class _ResultScreenState extends State<ResultScreen> {
                                 ],
                               ),
                               Text(
-                                'your_bmi'.tr() +
-                                    ' ${resultBMI.toStringAsFixed(1)}',
-                                style: TextStyle(
+                                '${'your_bmi'.tr()} ${resultBMI.toStringAsFixed(1)}',
+                                style: const TextStyle(
                                   fontSize: textSizeSmall,
                                   fontWeight: FontWeight.w500,
                                   color: textColor,
@@ -361,8 +360,8 @@ class _ResultScreenState extends State<ResultScreen> {
                           bmi: resultBMI,
                           bmiDataEnd: bmiData.obesityIII,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
+                        const Padding(
+                          padding: EdgeInsets.symmetric(
                               horizontal: defaultPadding),
                           child: Divider(
                             color: Color(0xFFC2BDBD),
@@ -385,7 +384,7 @@ class _ResultScreenState extends State<ResultScreen> {
                 Visibility(
                   visible: typeScreen == false,
                   child: Padding(
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                         horizontal: defaultPadding, vertical: 10.0),
                     child: Container(
                       height: 60,
@@ -404,7 +403,7 @@ class _ResultScreenState extends State<ResultScreen> {
                         child: Center(
                           child: Text(
                             'save'.tr(),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: textSizeLarge,
                               fontWeight: FontWeight.w500,
                               color: Colors.white,
@@ -418,7 +417,7 @@ class _ResultScreenState extends State<ResultScreen> {
                 Visibility(
                   visible: typeScreen == true,
                   child: Padding(
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                         horizontal: defaultPadding, vertical: 10.0),
                     child: Container(
                       height: 60,
@@ -434,7 +433,7 @@ class _ResultScreenState extends State<ResultScreen> {
                         child: Center(
                           child: Text(
                             'done'.tr(),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: textSizeLarge,
                               fontWeight: FontWeight.w500,
                               color: Colors.white,

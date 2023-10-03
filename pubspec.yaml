@@ -53,6 +53,7 @@ dependencies:
   easy_localization: ^3.0.3
   page_view_dot_indicator: ^2.3.0
   dots_indicator: ^3.0.0
+  rate_my_app: ^2.0.0
 
 
 dev_dependencies:

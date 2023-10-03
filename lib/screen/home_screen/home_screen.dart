@@ -110,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               Expanded(
                                 child: Padding(
-                                  padding: EdgeInsets.only(
+                                  padding: const EdgeInsets.only(
                                     left: defaultPadding,
                                     right: 10.0,
                                   ),
@@ -125,16 +125,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                           .add(OnTapGender(gender: 0));
                                     },
                                     border: (_currentGender == MALE)
-                                        ? BorderSide(
+                                        ? const BorderSide(
                                             color: maleColor, width: 3.0)
-                                        : BorderSide(color: Colors.transparent),
+                                        : const BorderSide(color: Colors.transparent),
                                   ),
                                 ),
                               ),
                               Expanded(
                                 child: Padding(
                                   padding:
-                                      EdgeInsets.only(right: defaultPadding),
+                                      const EdgeInsets.only(right: defaultPadding),
                                   child: CardGender(
                                     title: 'female'.tr(),
                                     icon: Icons.female_rounded,
@@ -146,9 +146,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                           .add(OnTapGender(gender: 1));
                                     },
                                     border: (_currentGender == FEMALE)
-                                        ? BorderSide(
+                                        ? const BorderSide(
                                             color: femaleColor, width: 3.0)
-                                        : BorderSide(color: Colors.transparent),
+                                        : const BorderSide(color: Colors.transparent),
                                   ),
                                 ),
                               ),
@@ -159,7 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           Text(
                             'age'.tr(),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: textSizeSmall,
                             ),
@@ -237,13 +237,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height: _currentHeight,
                                 ));
                           },
-                          borderRadius: BorderRadius.all(
+                          borderRadius: const BorderRadius.all(
                             Radius.circular(defaultBorderRadius),
                           ),
                           child: Center(
                             child: Text(
                               'calculation'.tr(),
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: textSizeLarge,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white,
@@ -293,7 +293,7 @@ class _HomeScreenState extends State<HomeScreen> {
     PanaraInfoDialog.show(
       context,
       title: title,
-      color: Color(0xFFFF2323),
+      color: const Color(0xFFFF2323),
       message: message,
       buttonText: 'okay'.tr(),
       panaraDialogType: PanaraDialogType.custom,

@@ -32,18 +32,18 @@ class CustomAppBar extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.all(7),
+            padding: const EdgeInsets.all(7),
             height: 42,
             width: 42,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(15)),
               color: Color(0xFFD1EDFF),
             ),
             child: InkWellButton(
+                onTap: goToScreen,
                 child: SvgPicture.asset(
                   'assets/images/ic_setting.svg',
-                ),
-                onTap: goToScreen),
+                )),
           )
         ],
       ),

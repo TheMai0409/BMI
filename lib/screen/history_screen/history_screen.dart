@@ -26,9 +26,9 @@ class _HistoryScreenState extends State<HistoryScreen> {
   @override
   void initState() {
     lists = getListBMI();
-    print('TheMD ${lists!.length >= 1}');
+    print('TheMD ${lists!.isNotEmpty}');
 
-    print('TheMD Lists ${lists}');
+    print('TheMD Lists $lists');
     super.initState();
   }
 
@@ -59,7 +59,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
             ),
             body: lists!.isNotEmpty
                 ? SingleChildScrollView(
-                    physics: ScrollPhysics(),
+                    physics: const ScrollPhysics(),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -67,11 +67,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
                           title: 'history'.tr(),
                           goToScreen: widget.goToSettingScreen,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 50,
                         ),
                         ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
                             return ItemBmi(
@@ -99,16 +99,16 @@ class _HistoryScreenState extends State<HistoryScreen> {
                         title: 'history'.tr(),
                         goToScreen: widget.goToSettingScreen,
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Text(
                         'no_history'.tr(),
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      Spacer()
+                      const Spacer()
                     ],
                   ),
           );

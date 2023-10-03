@@ -9,8 +9,14 @@ class OnTabChange extends MainScreenEvent {
   OnTabChange({required this.index});
 }
 
-class  OnScrollViewPage extends MainScreenEvent {
+class OnScrollViewPage extends MainScreenEvent {
   final int index;
 
   OnScrollViewPage({required this.index});
+}
+
+class ShowRate extends MainScreenEvent {
+  final RateMyApp rateMyApp;
+
+  ShowRate(this.rateMyApp);
 }

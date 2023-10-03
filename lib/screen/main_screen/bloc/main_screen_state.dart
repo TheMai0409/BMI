@@ -16,3 +16,10 @@ class TabChangedViewPage extends MainScreenState {
 
   TabChangedViewPage({required this.tabIndex});
 }
+
+class ShowRateSuccess extends MainScreenState {
+  final RateMyApp rateMyApp;
+
+  ShowRateSuccess(this.rateMyApp);
+
+}

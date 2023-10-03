@@ -1,6 +1,4 @@
-import 'package:bmi/model/article.dart';
 import 'package:bmi/model/bmi_data.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 const int MALE = 0;
 const int FEMALE = 1;

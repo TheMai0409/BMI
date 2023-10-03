@@ -23,7 +23,7 @@ class TextInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: defaultPadding, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: defaultPadding, vertical: 6),
       child: Row(
         children: [
           Visibility(
@@ -41,7 +41,7 @@ class TextInfo extends StatelessWidget {
               size: 13,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           Text(
@@ -61,7 +61,7 @@ class TextInfo extends StatelessWidget {
                     : 16,
                 fontWeight: FontWeight.w500),
           ),
-          Spacer(),
+          const Spacer(),
           Text(content,  style: TextStyle(
               color: checkYourBMI(
                 bmi: bmi,

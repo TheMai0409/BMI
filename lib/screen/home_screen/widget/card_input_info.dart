@@ -33,7 +33,7 @@ class CardInputInfo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(
-              flex: 1,
+              flex: 2,
               child: Center(
                 child: Text(
                   title,
@@ -45,7 +45,7 @@ class CardInputInfo extends StatelessWidget {
               ),
             ),
             Expanded(
-              flex: 2,
+              flex: 3,
               child: IntrinsicWidth(
                 child: TextFormField(
                   maxLines: 1,
