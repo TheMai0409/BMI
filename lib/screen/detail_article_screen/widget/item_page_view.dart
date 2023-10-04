@@ -21,9 +21,9 @@ class _ItemPageViewState extends State<ItemPageView> {
           child: Column(
             children: [
               const SizedBox(height: 50,),
-              Text(widget.article.title ?? '', style: const TextStyle(color: textColor, fontSize: 22, fontWeight: FontWeight.w500),),
+              Text(widget.article.title ?? '', style: const TextStyle(color: textColor, fontSize: 20, fontWeight: FontWeight.w500),),
               const SizedBox(height: 25,),
-              Text(widget.article.content ?? '', style: const TextStyle(color: textColor, fontSize: 18, height: 1.5),),
+              Text(widget.article.content ?? '', style: const TextStyle(color: textColor, fontSize: 16, height: 1.6),),
             ],
           ),
         ),
