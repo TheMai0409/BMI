@@ -155,7 +155,6 @@ class _MainScreenState extends State<MainScreen> {
               ),
             ),
             onInitialized: (context, rateMyApp) {
-              print('TheMD Chay vao day');
               context.read<MainScreenBloc>().add(ShowRate(rateMyApp));
             },
           );
