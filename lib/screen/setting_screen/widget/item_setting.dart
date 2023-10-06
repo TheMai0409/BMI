@@ -47,8 +47,8 @@ class ItemSetting extends StatelessWidget {
               title,
               style: const TextStyle(
                 color: textColor,
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
+                fontSize: textSizeUnit,
+                fontWeight: FontWeight.w400,
               ),
             ),
             const Spacer(),

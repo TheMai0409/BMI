@@ -15,11 +15,10 @@ const Color obesityIII = Color(0xFFFF4100);
 
 const Color textColor = Colors.black;
 
-const double textSizeUnit = 16.0;
-const double textSizeSmall = 20.0;
-const double textSizeMid = 22.0;
-const double textSizeLarge = 24.0;
-const double textSizeNumber = 28.0;
+const double textSizeUnit = 13.0;
+const double textSizeSmall = 14.0;
+const double textSizeMid = 15.0;
+const double textSizeLarge = 16.0;
 
 const double defaultBorderRadius = 25.0;
 const double defaultPadding = 23.0;

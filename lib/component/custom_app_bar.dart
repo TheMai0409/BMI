@@ -25,7 +25,7 @@ class CustomAppBar extends StatelessWidget {
             child: Text(
               title ?? "",
               style: const TextStyle(
-                fontSize: textSizeNumber,
+                fontSize: textSizeLarge,
                 color: textColor,
                 fontWeight: FontWeight.w500,
               ),

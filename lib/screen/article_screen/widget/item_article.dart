@@ -46,7 +46,7 @@ class ItemArticle extends StatelessWidget {
               Text(
                 title,
                 style: const TextStyle(
-                  fontSize: 18,
+                  fontSize: textSizeSmall,
                   color: textColor,
                   fontWeight: FontWeight.w600,
                 ),

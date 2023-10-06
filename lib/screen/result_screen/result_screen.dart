@@ -385,9 +385,9 @@ class _ResultScreenState extends State<ResultScreen> {
                   visible: typeScreen == false,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: defaultPadding, vertical: 10.0),
+                        horizontal: 50, vertical: 10.0),
                     child: Container(
-                      height: 60,
+                      height: 50,
                       width: MediaQuery.of(context).size.width,
                       decoration: const BoxDecoration(
                         color: Color(0xFF0827F1),
@@ -418,9 +418,9 @@ class _ResultScreenState extends State<ResultScreen> {
                   visible: typeScreen == true,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: defaultPadding, vertical: 10.0),
+                        horizontal: 30, vertical: 10.0),
                     child: Container(
-                      height: 60,
+                      height: 50,
                       width: MediaQuery.of(context).size.width,
                       decoration: const BoxDecoration(
                         color: Color(0xFF5871F1),

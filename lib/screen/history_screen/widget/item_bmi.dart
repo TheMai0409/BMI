@@ -83,7 +83,7 @@ class ItemBmi extends StatelessWidget {
                         style: const TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w700,
-                            fontSize: 20),
+                            fontSize: textSizeMid),
                       ),
                       const SizedBox(
                         height: 10,
@@ -91,7 +91,7 @@ class ItemBmi extends StatelessWidget {
                       Text(
                         '${'date_time'.tr()}: ${item.dateTime}',
                         style:
-                            const TextStyle(color: Colors.grey, fontSize: 16),
+                            const TextStyle(color: Colors.grey, fontSize: textSizeSmall),
                       ),
                     ],
                   ),

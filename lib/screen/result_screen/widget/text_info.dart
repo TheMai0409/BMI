@@ -57,8 +57,8 @@ class TextInfo extends StatelessWidget {
                   bmi: bmi,
                   bmiDataStart: bmiDataStart,
                   bmiDataEnd: bmiDataEnd,
-                ) ? 18
-                    : 16,
+                ) ? textSizeSmall
+                    : textSizeUnit,
                 fontWeight: FontWeight.w500),
           ),
           const Spacer(),
@@ -73,8 +73,8 @@ class TextInfo extends StatelessWidget {
                 bmi: bmi,
                 bmiDataStart: bmiDataStart,
                 bmiDataEnd: bmiDataEnd,
-              ) ? 18
-                  : 16,
+              ) ?  textSizeSmall
+                  : textSizeUnit,
               fontWeight: FontWeight.w700),)
         ],
       ),

@@ -218,9 +218,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     alignment: FractionalOffset.bottomCenter,
                     child: Padding(
                       padding: const EdgeInsets.only(
-                          left: 30, right: 30, bottom: 10, top: 2),
+                          left: 60, right: 60, bottom: 10, top: 2),
                       child: Container(
-                        height: 60,
+                        height: 50,
                         width: MediaQuery.of(context).size.width,
                         decoration: const BoxDecoration(
                           color: Color(0xFF0827F1),
