@@ -26,6 +26,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     _controller = PageController(initialPage: _currentIndex);
+    print('TheMD: $_currentIndex');
     super.initState();
   }
 
